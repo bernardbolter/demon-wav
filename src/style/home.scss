@@ -4,9 +4,27 @@
     background: $background;
 }
 
+.home-logo-container {
+    position: fixed;
+    z-index: 300;
+    top: 10px;
+    width: 218px;
+    height: 16px;
+    transform: translateX(-50%);
+    left: 50%;
+    cursor: pointer;
+
+    svg {
+        fill: $light-text;
+    }
+}
+
 .home-playlist-container {
-    position: flex;
+    position: fixed;
     z-index: 200;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 16px;
+    bottom: 10px;
+    right: 30px;
+    cursor: pointer;
 }

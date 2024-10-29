@@ -4,6 +4,9 @@
     position: fixed;
     z-index: 400;
     display: flex;
+    background: rgba(255,255,255,.5);
+    top: 0;
+    left: 0;
 }
 
 .playlist-close-container {

@@ -47,7 +47,10 @@ const AudioNav = () => {
 
     return (
         <section className="audio-nav-container">
-            <p className="audio-nav-title">Demon WAV</p>
+            <p 
+                className="audio-nav-title"
+                onClick={() => setDemon(state => ({ ...state, page: 'track' }))}    
+            >Demon WAV</p>
             <div className="audio-nav-progress">
                 <div 
                     className="audio-nav-progress-playhead-container"

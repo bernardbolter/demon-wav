@@ -5,6 +5,7 @@ import { DemonContext } from "@/providers/DemonProvider"
 import Visualizer from "@/components/Visualizer"
 import AboutWAV from '@/components/AboutWAV'
 import Playlist from '@/components/Playlist'
+import AboutTrack from "@/components/AboutTrack"
 
 import Logo from "@/svg/Logo"
 import PlaylistIcon from "@/svg/PlaylistIcon"
@@ -28,7 +29,9 @@ const Home = () => {
         <PlaylistIcon />
       </div>
 
+      {demon.page === 'about' && <AboutWAV />}
       {demon.page === 'playlist' && <Playlist />}
+      {demon.page === 'track' && <AboutTrack />}
     </section>
   )
 }

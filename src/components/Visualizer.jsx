@@ -29,10 +29,10 @@ const Analyzer = track => {
     }, [track.track.current])
 
     // for testing in leva
-    const material = useControls({
-        wireframe: false,
-        displacementScale: { value: 0.5, min: 0, max: 5.0, step: 0.01 }
-    })
+    // const material = useControls({
+    //     wireframe: false,
+    //     displacementScale: { value: 0.5, min: 0, max: 5.0, step: 0.01 }
+    // })
 
     // adds to the image
     useEffect(() => {
@@ -60,10 +60,10 @@ const Analyzer = track => {
         >
             <planeGeometry args={[1, 1, 180, 90]} />
             <meshStandardMaterial
-                wireframe={material.wireframe}
+                // wireframe={material.wireframe}
                 map={imageDesktop}
                 displacementMap={disImageDesktop}
-                displacementScale={material.displacementScale}
+                // displacementScale={material.displacementScale}
             />
         </mesh>
     )
@@ -125,7 +125,7 @@ const Visualizer = () => {
                     <ambientLight intensity={1} />
                     <PlayTrack />
                     <OrbitControls />
-                    <Stats />
+                    {/* <Stats /> */}
                 </Canvas>
                 <AudioNav />
             </section>
