@@ -52,6 +52,12 @@ const AudioNav = () => {
                 onClick={() => setDemon(state => ({ ...state, page: 'track' }))}    
             >Demon WAV</p>
             <div className="audio-nav-progress">
+                <div
+                    className="audio-nav-progress-playhead-begining"
+                    style={{
+                        width: `${playheadX}px`
+                    }}
+                />
                 <div 
                     className="audio-nav-progress-playhead-container"
                     style={{

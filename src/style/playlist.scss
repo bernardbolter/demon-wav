@@ -4,7 +4,7 @@
     position: fixed;
     z-index: 400;
     display: flex;
-    background: rgba(255,255,255,.5);
+    background: $background-faded;
     top: 0;
     left: 0;
 }
@@ -16,4 +16,29 @@
     cursor: pointer;
     height: 16px;
     width: 16px;
+}
+
+.playlist-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 50px 10px;
+}
+
+.playlist-text {
+    font-size: 180px;
+    line-height: 140px;
+    font-weight: 700;
+    color: $background;
+    margin: 0;
+    padding: 0; 
+}
+
+.playlist-more-text {
+    font-size: 180px;
+    line-height: 140px;
+    font-weight: 700;
+    color: $background-faded;
+    margin: 0;
+    padding: 0; 
 }

@@ -2,6 +2,8 @@
 import { useContext } from "react"
 import { DemonContext } from "@/providers/DemonProvider"
 
+import { AnimatePresence, motion } from "framer-motion"
+
 import Visualizer from "@/components/Visualizer"
 import AboutWAV from '@/components/AboutWAV'
 import Playlist from '@/components/Playlist'
@@ -28,10 +30,38 @@ const Home = () => {
       >
         <PlaylistIcon />
       </div>
-
-      {demon.page === 'about' && <AboutWAV />}
-      {demon.page === 'playlist' && <Playlist />}
-      {demon.page === 'track' && <AboutTrack />}
+      <AnimatePresence>
+        {demon.page === 'about' && (
+          <motion.div
+            key="about"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <AboutWAV />
+          </motion.div>
+        )}
+        {demon.page === 'playlist' && (
+          <motion.div
+            key="playlist"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <Playlist />
+          </motion.div>
+        )}
+        {demon.page === 'track' && (
+          <motion.div
+            key="track"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <AboutTrack />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

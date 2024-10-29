@@ -14,7 +14,10 @@ const Playlist = () => {
             >
                 <Close />
             </div>
-            <h1>PLAYLIST</h1>
+            <div className="playlist-text-container">
+                <h1 className="playlist-text">UNO - ALESIA</h1>
+                <h1 className="playlist-more-text">MORE COMING SOON</h1>
+            </div>
         </section>
     )
 }

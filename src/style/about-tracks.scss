@@ -4,7 +4,7 @@
     position: fixed;
     z-index: 400;
     display: flex;
-    background: rgba(255,255,255,.5);
+    background: $background-faded;
     top: 0;
     left: 0;
 }
@@ -16,4 +16,41 @@
     cursor: pointer;
     height: 16px;
     width: 16px;
+}
+
+.about-track-info-container {
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    margin: 50px 1% 0;
+}
+
+.about-track-text-container {
+    width: 50%;
+    flex: 1 1 0;
+}
+
+.about-track-image-container {
+    width: calc(100vh - 150px);
+    height: calc(100vh - 150px);
+    flex-basis: auto;
+
+    img {
+        width: 100%;
+    }
+}
+
+.about-track-text {
+    color: $background;
+    font-size: 15.5px;
+    line-height: 16px;
+    font-weight: 500;
+    padding: 0 5px 40px;
+}
+
+.about-track-text-artist {
+    color: $background;
+    font-size: 11.5px;
+    line-height: 24px;
+    font-weight: 500; 
 }
