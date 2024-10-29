@@ -1,0 +1,16 @@
+.playlist-container {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 400;
+    display: flex;
+}
+
+.playlist-close-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+}

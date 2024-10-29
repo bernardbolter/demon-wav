@@ -1,0 +1,12 @@
+.home-container {
+    width: 100%;
+    height: 100vh;
+    background: $background;
+}
+
+.home-playlist-container {
+    position: flex;
+    z-index: 200;
+    width: 20px;
+    height: 20px;
+}
