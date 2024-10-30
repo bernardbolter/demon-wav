@@ -32,7 +32,7 @@ const AudioNav = () => {
             <p 
                 className="audio-nav-title"
                 onClick={() => setDemon(state => ({ ...state, page: 'track' }))}    
-            >Demon WAV</p>
+            >{demon.trackaData[0].title}</p>
             <div className="audio-nav-progress">
                 <div
                     className="audio-nav-progress-playhead-begining"
