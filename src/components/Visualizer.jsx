@@ -1,3 +1,5 @@
+"use client"
+
 import { useContext, Suspense, useRef, useState, useEffect, useMemo } from "react"
 import { DemonContext } from "@/providers/DemonProvider"
 import { useWindowSize } from "@/hooks/useWindowSize"
