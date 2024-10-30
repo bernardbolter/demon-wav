@@ -24,12 +24,6 @@ const Analyzer = ({
     const analyzerRef = useRef(null)
     const { gl } = useThree()
 
-    // const imageDesktop = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg')
-    // const disDesktop = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg')
-    // const imageMobile = useLoader(TextureLoader, '/audio_one_mobile.jpg')
-    // const disImageDesktop = useLoader(TextureLoader, '/audio_one_dis_desktop.jpg')
-    // const disImageMobile = useLoader(TextureLoader, '/audio_one_dis_mobile.jpg')
-    // const [track, setTrack] = useState("/audio_one.mp3")
     const viewport = useThree(state => state.viewport)
 
     // load track into audio anylyser reference when track is changed
@@ -58,7 +52,7 @@ const Analyzer = ({
             }
             const averageFreq = analyzerRef.current.getAverageFrequency()
             const allFreq = analyzerRef.current.getFrequencyData()
-            imageRef.current.material.displacementScale = averageFreq / 5
+            imageRef.current.material.displacementScale = averageFreq / 4
         }
     })
 
@@ -97,7 +91,6 @@ const PlayTrack = ({
             } else {
                 trackRef.current.context.suspend()
             }
-            // console.log(trackRef.current.context)
         }
     }, [demon.trackPlaying])
 
@@ -154,8 +147,6 @@ const Visualizer = () => {
     //         // setDesktopImage(useLoader(TextureLoader, `/images/${demon.tracksData[demon.currentTrackIndex].slug}/${demon.tracksData[demon.currentTrackIndex].slug}_desktop.jpg`))
     //     }
     // }, [demon.tracksData, demon.currentTrackIndex])
-
-    // console.log("D image: ", desktopImage)
 
     return (
         <section className="visualizer-container">
