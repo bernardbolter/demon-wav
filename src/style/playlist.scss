@@ -26,19 +26,39 @@
 }
 
 .playlist-text {
-    font-size: 180px;
-    line-height: 140px;
+    font-size: 76px;
+    line-height: 66px;
     font-weight: 700;
     color: $background;
     margin: 0;
-    padding: 0; 
+    padding: 0;
+
+    @media screen and (min-width: $mobile) {
+        font-size: 130px;
+        line-height: 100px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        font-size: 180px;
+        line-height: 140px;
+    }
 }
 
 .playlist-more-text {
-    font-size: 180px;
-    line-height: 140px;
+    font-size: 76px;
+    line-height: 66px;
     font-weight: 700;
     color: $background-faded;
     margin: 0;
-    padding: 0; 
+    padding: 0;
+
+    @media screen and (min-width: $mobile) {
+        font-size: 130px;
+        line-height: 100px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        font-size: 180px;
+        line-height: 140px;
+    }
 }

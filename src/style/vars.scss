@@ -8,9 +8,18 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 $light-text: #D9D9D9;
 $light-text-faded: rgba(217, 217, 217, .5);
 $background: #2E2E2E;
 $background-faded: rgba(217, 217, 217, .8);
+
+// breaks
+$mobile: 550px;
+$tablet: 769px;
+$desktop: 1000px;
+$jumbotron: 1200px;
+

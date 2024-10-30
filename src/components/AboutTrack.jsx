@@ -1,10 +1,14 @@
 import { useContext } from "react"
 import { DemonContext } from "@/providers/DemonProvider"
+import { useWindowSize } from "@/hooks/useWindowSize"
+
+import Image from "next/image"
 
 import Close from "@/svg/Close"
 
 const AboutTrack = () => {
     const [demon, setDemon] = useContext(DemonContext)
+    const size = useWindowSize()
 
     return (
         <section className="about-track-container">
@@ -16,17 +20,18 @@ const AboutTrack = () => {
             </div>
             <div className="about-track-info-container">
                 <div className="about-track-text-container">
-                    <p className="about-track-text">“Uno” explores the complex connection between two souls experiencing both unity and conflict. Inspired by personal experiences, the band aimed to create a track that captures the intense emotions of a symbiotic relationship—the feeling of being trapped in the expectations and "ifs" of the other. The lines “We are identical, but I live in your ifs” convey this ambivalence: being one, yet feeling confined. The metaphor of the "sword of Damocles" amplifies the sense of constant threat and uncertainty. Musically, the song captures this tension with a blend of melancholic melodies and powerful arrangements. “Uno” invites the listener to confront their own inner struggles and break free from the chains of "ifs."</p>
-                    <p className="about-track-text-artist">Alberto Deon</p>
-                    <p className="about-track-text-artist">Leonardo De Biaggio</p>
-                    <p className="about-track-text-artist">Giulio Gabrielli</p>
-                    <p className="about-track-text-artist">Edoardo Caizzi</p>
-                    <p className="about-track-text-artist">Paolo Donato</p>
-                    <p className="about-track-text-artist">Edoardo Staff</p>
-                    <p className="about-track-text-artist">Iulian Dimitrenco</p>
+                    <p className="about-track-text">{demon.tracksData[demon.currentTrackIndex].text}</p>
+                    {demon.tracksData[demon.currentTrackIndex].artists.map(artist => (
+                        <p key={artist} className="about-track-text-artist">{artist}</p>
+                    ))}
                 </div>
-                <div className="about-track-image-container"  >
-                    <img src="/TrackCover.jpg" />
+                <div className="about-track-image-container">
+                    <Image
+                        src={`/images/${demon.tracksData[demon.currentTrackIndex].slug}/${demon.tracksData[demon.currentTrackIndex].slug}_cover.jpg`}
+                        alt={`cover image for the track by ${demon.tracksData[demon.currentTrackIndex].slug}`}
+                        width={size.width < 769 ? size.width * .98 : size.width * .49}
+                        height={size.width < 769 ? size.width * .98 : size.width * .49}
+                    />
                 </div>
             </div>
         </section>

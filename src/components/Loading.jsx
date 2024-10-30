@@ -26,10 +26,10 @@ const Loading = ({ text }) => {
                     marginBottom: '20px'
                 }}
             >{text}</h1>
-            {/* <SpinnerInfinity 
+            <SpinnerInfinity 
                 color="#eeeeee"
                 secondaryColor="#999999"
-            /> */}
+            />
         </section>
     )
 }

@@ -17,7 +17,7 @@ import dd from "../../public/demonData.json"
 
 const Home = () => {
   const [demon, setDemon] = useContext(DemonContext)
-  console.log(demon)
+  // console.log(demon)
   
   useEffect(() => {
     // console.log("dd: ", dd)

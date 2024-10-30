@@ -4,7 +4,7 @@
             "id" : "audio001",
             "title" : "demon WAV",
             "slug" : "uno_alesia",
-            "text" : "'Uno' explores the complex connection between two souls experiencing both unity and conflict. Inspired by personal experiences, the band aimed to create a track that captures the intense emotions of a symbiotic relationship—the feeling of being trapped in the expectations and 'ifs' of the other. The lines 'We are identical, but I live in your ifs' convey this ambivalence: being one, yet feeling confined. The metaphor of the 'sword of Damocles' amplifies the sense of constant threat and uncertainty. Musically, the song captures this tension with a blend of melancholic melodies and powerful arrangements. “Uno” invites the listener to confront their own inner struggles and break free from the chains of ifs.",
+            "text" : "“Uno“ explores the complex connection between two souls experiencing both unity and conflict. Inspired by personal experiences, the band aimed to create a track that captures the intense emotions of a symbiotic relationship—the feeling of being trapped in the expectations and “ifs“ of the other. The lines 'We are identical, but I live in your ifs' convey this ambivalence: being one, yet feeling confined. The metaphor of the “sword of Damocles“ amplifies the sense of constant threat and uncertainty. Musically, the song captures this tension with a blend of melancholic melodies and powerful arrangements. “Uno” invites the listener to confront their own inner struggles and break free from the chains of “ifs“.",
             "artists" : [
                 "Alberto Deon",
                 "Leonardo De Biaggio",
@@ -17,7 +17,7 @@
         }
     ],
     "about" : {
-        "text" : "DEMON WAV, a new online record platform designed for the digital age. We empower independent artists and music enthusiasts to connect, collaborate, and share their passion for innovative sound. We break the mold of traditional music experience through a unique space where creativity and individuality thrive, and where music and visual art connect.DEMON WAV is more than just a record label; it's a community where genre-defying artists can showcase their work without boundaries.",
+        "text" : "Demon WAV hatched from the sheer vocation of Alberto Deon to make music. Semantically, WAV is a direct reference to the audio file format known for best preserving the quality of sounds. The expression WAV stands as an etiological allegory to the universe of computer music, and the way it impacted a generational taste. In Demon WAV, music becomes the chosen channel for interweaving cultural and autobiographical references. Expanding the idea of brand, and product into a multifaceted reality that ultimately becomes a mirror to the self.",
         "slug" : "about_image"
     },
     "products" : [

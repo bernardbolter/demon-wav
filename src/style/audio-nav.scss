@@ -53,11 +53,16 @@
 .audio-nav-svg-container {
     display: flex;
     margin: 10px 0;
+    width: 32px;
+    height: 32px;
+    transform-origin: center center;
+    justify-content: center;
+    align-items: center;
 }
 
 .audio-nav-svg {
-    width: 28px;
-    height: 28px;
+    width: 100%;
+    transform-origin: center;
 
     svg {
         fill: $light-text;

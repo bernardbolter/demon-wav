@@ -138,7 +138,7 @@ const Visualizer = () => {
     const [desktopDis, setDesktopDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg'))
     const [mobileImage, setMobileImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg'))
     const [mobileDis, setMobileDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
-    const [audioURL, setAudioURL] = useState('/audio/uno_alesia.mp3')
+    const [audioURL, setAudioURL] = useState('/audio/uno_alesia.wav')
 
     // useEffect(() => {
     //     console.log("index: ", demon.currentTrackIndex)
