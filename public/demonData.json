@@ -1,5 +1,57 @@
-[
-    {
-        "id" : "audio_one"
-    }
-]
+{
+    "tracks" : [
+        {
+            "id" : "audio001",
+            "title" : "demon WAV",
+            "slug" : "uno_alesia"
+        }
+    ],
+    "about" : {
+        "text" : "DEMON WAV, a new online record platform designed for the digital age. We empower independent artists and music enthusiasts to connect, collaborate, and share their passion for innovative sound. We break the mold of traditional music experience through a unique space where creativity and individuality thrive, and where music and visual art connect.DEMON WAV is more than just a record label; it's a community where genre-defying artists can showcase their work without boundaries.",
+        "slug" : "about_image"
+    },
+    "products" : [
+        {
+            "id" : "001",
+            "title" : "Uno - Alesia",
+            "slug" : "uno_alesia",
+            "price" : 99,
+            "text" : "'Uno' explores the complex connection between two souls experiencing both unity and conflict. Inspired by personal experiences, the band aimed to create a track that captures the intense emotions of a symbiotic relationship—the feeling of being trapped in the expectations and 'ifs' of the other. The lines 'We are identical, but I live in your ifs' convey this ambivalence: being one, yet feeling confined. The metaphor of the 'sword of Damocles' amplifies the sense of constant threat and uncertainty. Musically, the song captures this tension with a blend of melancholic melodies and powerful arrangements. “Uno” invites the listener to confront their own inner struggles and break free from the chains of ifs."
+        },
+        {
+            "id" : "002",
+            "title" : "Abissi - Alesia",
+            "slug" : "abissi_alesia",
+            "price" : 99,
+            "text" : ""
+        },
+        {
+            "id" : "003",
+            "title" : "Bully - Ye",
+            "slug" : "bully-ye",
+            "price" : 99,
+            "text" : ""
+        },
+        {
+            "id" : "004",
+            "title" : "Tim - Playboi Carti",
+            "slug" : "tim_playboi_carti",
+            "price" : 99,
+            "text" : ""
+        },
+        {
+            "id" : "005",
+            "title" : "Blood Blind - Cann",
+            "slug" : "blood_blind_cann",
+            "price" : 99,
+            "text" : ""
+        },
+        {
+            "id" : "006",
+            "title" : "Genesis - Justice",
+            "slug" : "genisis_justice",
+            "price" : 99,
+            "text" : ""
+        }
+    ]
+}

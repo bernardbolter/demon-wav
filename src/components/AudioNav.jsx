@@ -1,38 +1,20 @@
 import { useContext, useEffect, useMemo } from 'react'
 import { DemonContext } from '@/providers/DemonProvider'
 
-import { useMotionValue, useTransform } from 'framer-motion'
-
 import { useWindowSize } from '@/hooks/useWindowSize'
 
 import Play from '@/svg/Play'
 import Stop from '@/svg/Stop'
 import PlayHead from '@/svg/PlayHead'
 
-function interpolateBetweenRanges(value, x, y) {
-    if (x <= 0 || y <= 0) {
-        throw new Error("Both x and y must be greater than 0.");
-    }
-    
-    // Calculate the interpolation factor for both ranges
-    const ratioX = value / x; // Interpolation for range 0 to x
-    const ratioY = value / y; // Interpolation for range 0 to y
-    
-    // Return the interpolated value based on the ratios
-    return {
-        valueInX: ratioX * 100, // Percentage in range 0 to x
-        valueInY: ratioY * 100  // Percentage in range 0 to y
-    };
-}
-
 const AudioNav = () => {
     const [demon, setDemon] = useContext(DemonContext)
     const size = useWindowSize()
     // console.log(demon.currentTrackTime)
     const playheadX = useMemo(() => {
-        console.log(demon.currentTrackTime)
-        console.log(demon.currentTrackLength)
-        console.log((demon.currentTrackTime / demon.currentTrackLength) * (size.width - 20))
+        // console.log(demon.currentTrackTime)
+        // console.log(demon.currentTrackLength)
+        // console.log((demon.currentTrackTime / demon.currentTrackLength) * (size.width - 20))
         if (demon.currentTrackLength === 0 || demon.currentTrackTime === 0) {
             return 0
         } else {

@@ -8,15 +8,18 @@ import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { useControls } from "leva"
 import { TextureLoader } from "three"
 import { Stats, OrbitControls, PositionalAudio } from "@react-three/drei"
+const imageDesktop = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg')
 
 const Analyzer = track => {
     const [demon, setDemon] = useContext(DemonContext)
     const imageRef = useRef(null)
     const analyzerRef = useRef(null)
     const { gl } = useThree()
-    const imageDesktop = useLoader(TextureLoader, '/audio_one_desktop.jpg')
+
+    // const imageDesktop = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg')
+    // const disDesktop = 
     // const imageMobile = useLoader(TextureLoader, '/audio_one_mobile.jpg')
-    const disImageDesktop = useLoader(TextureLoader, '/audio_one_dis_desktop.jpg')
+    // const disImageDesktop = useLoader(TextureLoader, '/audio_one_dis_desktop.jpg')
     // const disImageMobile = useLoader(TextureLoader, '/audio_one_dis_mobile.jpg')
     // const [track, setTrack] = useState("/audio_one.mp3")
     const viewport = useThree(state => state.viewport)
@@ -115,21 +118,44 @@ const PlayTrack = () => {
 }
 
 const Visualizer = () => {
-    const [demon, setDemon] = useContext(DemonContext)
-    // console.log(demon)
+    // const [demon, setDemon] = useContext(DemonContext)
+    // const [desktopImage, setDesktopImage] = useState(null)
+    // const [desktopDis, setDesktopDis] = useState(null)
+    // const [mobileImage, setMobileImage] = useState(null)
+    // const [mobileDis, setMobileDis] = useState(null)
+    // const [audioURL, setAudioURL] = useState('')
+
+    // useEffect(() => {
+    //     console.log("index: ", demon.currentTrackIndex)
+    //     console.log("tracks array: ", demon.tracksData)
+    //     if (demon.tracksData.length !== 0) {
+    //         // const getDesktopImage = useLoader(TextureLoader, `/images/${demon.tracksData[demon.currentTrackIndex].slug}/${demon.tracksData[demon.currentTrackIndex].slug}_desktop.jpg`)
+    //         // console.log("G D image: ", getDesktopImage)
+    //         // setDesktopImage(useLoader(TextureLoader, `/images/${demon.tracksData[demon.currentTrackIndex].slug}/${demon.tracksData[demon.currentTrackIndex].slug}_desktop.jpg`))
+    //     }
+    // }, [demon.tracksData, demon.currentTrackIndex])
+
+    // console.log("D image: ", desktopImage)
+
+    console.log("loading: ", imageDesktop)
 
     return (
-        <Suspense fallback={<Loading />}>
-            <section className="visualizer-container">
-                <Canvas>
-                    <ambientLight intensity={1} />
-                    <PlayTrack />
-                    <OrbitControls />
-                    {/* <Stats /> */}
-                </Canvas>
-                <AudioNav />
-            </section>
-        </Suspense>
+        <section className="visualizer-container">
+            {/* <Canvas
+                onCreated={() => {
+                    console.log("canvas created")
+                    setDemon(state => ({ ...state, canvasLoaded: true }))
+                }}
+            > */}
+                {/* <Suspense fallback={<Loading text="loading Visualizer" />}> */}
+                    {/* <ambientLight intensity={1} /> */}
+                    {/* <PlayTrack /> */}
+                    {/* <OrbitControls /> */}
+                {/* </Suspense> */}
+                {/* <Stats /> */}
+            {/* </Canvas> */}
+            <AudioNav />
+        </section>
     )
 }
 

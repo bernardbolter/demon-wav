@@ -14,6 +14,14 @@ const AboutWAV = () => {
             >
                 <Close />
             </div>
+            <div className="about-wav-content-container">
+                <div className="about-wav-demon-container">
+
+                </div>
+                <div className="about-wav-product-container">
+                    
+                </div>
+            </div>
             <h1>ABOUT WAV</h1>
         </section>
     )
