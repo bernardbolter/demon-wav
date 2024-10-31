@@ -1,7 +1,7 @@
 .audio-nav-container {
     display: flex;
     position: fixed;
-    z-index: 100;
+    z-index: 800;
     width: calc(100% - 20px);
     bottom: 0;
     margin: 10px;
@@ -58,11 +58,20 @@
     transform-origin: center center;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .audio-nav-svg {
     width: 100%;
     transform-origin: center;
+    transform: scale(1);
+    transition: transform .2s ease-in-out;
+    transform-origin: center center;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: transform .2s ease-in-out;
+    }
 
     svg {
         fill: $light-text;

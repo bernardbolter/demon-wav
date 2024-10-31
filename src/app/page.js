@@ -61,7 +61,13 @@ const Home = () => {
                 <AudioNav />
                 <div 
                   className="home-playlist-container"
-                  onClick={() => setDemon(state => ({ ...state, page: 'playlist' }))}
+                  onClick={() => {
+                    if (demon.page === 'playlist') {
+                      setDemon(state => ({ ...state, page: 'home' }))
+                    } else {
+                      setDemon(state => ({ ...state, page: 'playlist' }))
+                    }
+                  }}
                 >
                   <PlaylistIcon />
                 </div>

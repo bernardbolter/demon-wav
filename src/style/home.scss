@@ -28,12 +28,24 @@
 
 .home-playlist-container {
     position: fixed;
-    z-index: 200;
+    z-index: 900;
     width: 28px;
     height: 16px;
-    bottom: 28px;
+    bottom: 32px;
     right: 30px;
     cursor: pointer;
+    svg {
+        width: 100%;
+        transform: scale(1);
+        transition: transform .2s ease-in-out;
+        transform-origin: center center;
+
+        &:hover {
+            transform: scale(1.05);
+            transition: transform .2s ease-in-out;
+        }
+    }
+    
 }
 
 .loading-image-container {

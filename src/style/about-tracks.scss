@@ -7,6 +7,7 @@
     background: $background-faded;
     top: 0;
     left: 0;
+    backdrop-filter: blur(4px);
 }
 
 .about-track-close-container {
@@ -16,6 +17,15 @@
     cursor: pointer;
     height: 16px;
     width: 16px;
+
+    transform: scale(1);
+    transition: transform .2s ease-in-out;
+    transform-origin: center center;
+
+    &:hover {
+        transform: scale(1.02);
+        transition: transform .2s ease-in-out;
+    }
 }
 
 .about-track-info-container {

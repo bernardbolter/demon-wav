@@ -17,6 +17,15 @@
     cursor: pointer;
     height: 16px;
     width: 16px;
+
+    transform: scale(1);
+    transition: transform .2s ease-in-out;
+    transform-origin: center center;
+
+    &:hover {
+        transform: scale(1.02);
+        transition: transform .2s ease-in-out;
+    }
 }
 
 .playlist-text-container {
@@ -41,9 +50,9 @@
     }
 
     @media screen and (min-width: $tablet) {
-        font-size: 180px;
-        line-height: 140px;
-        font-weight: 700;
+        font-size: 130px;
+        line-height: 120px;
+        font-weight: 500;
     }
 }
 
@@ -62,8 +71,8 @@
     }
 
     @media screen and (min-width: $tablet) {
-        font-size: 180px;
-        line-height: 140px;
-        font-weight: 700;
+        font-size: 130px;
+        line-height: 120px;
+        font-weight: 500;
     }
 }

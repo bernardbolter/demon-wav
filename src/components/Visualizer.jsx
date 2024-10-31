@@ -63,16 +63,17 @@ const Analyzer = ({
     return (
         <mesh
             ref={imageRef}
-            scale={[viewport.height * 1.78, viewport.height, 1]}
+            scale={size.width > 768 ? [viewport.height * 1.78, viewport.height, 1] : [viewport.height * .6, viewport.height, 1.78]}
             castShadow={true}
             receiveShadow={true}
         >
             <planeGeometry args={[1, 1, 180, 180]} />
             <meshStandardMaterial
                 // wireframe={material.wireframe}
-                map={size.width > 769 ? desktopImage : mobileImage}
-                displacementMap={size.width > 769 ? desktopDis : mobileDis}
+                map={size.width > 768 ? desktopImage : mobileImage}
+                displacementMap={size.width > 768 ? desktopDis : mobileDis}
                 // displacementScale={material.displacementScale}
+                side={'white'}
             />
         </mesh>
     )
