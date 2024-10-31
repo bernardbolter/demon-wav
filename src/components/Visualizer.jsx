@@ -172,6 +172,10 @@ const Visualizer = () => {
         if (progress.loaded === 5 && progress.total === 5) {
             console.log("assets loaded")
             setDemon(state => ({ ...state, assetsLoaded: true }))
+            setTimeout(() => {
+                console.log("set audio loaded")
+                setDemon(state => ({ ...state, audioLoaded: true }))
+            }, [3000])
         }
     }, [progress])
 

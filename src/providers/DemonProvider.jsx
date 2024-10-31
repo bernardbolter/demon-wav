@@ -18,7 +18,9 @@ const DemonProvider = ({ children }) => {
         tracksData: [],
         productsData: [],
         canvasLoaded: false,
-        assetsLoaded: false
+        assetsLoaded: false,
+        audioLoaded: false,
+        audioPlaying: false
    })
 
    return (

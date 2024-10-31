@@ -32,7 +32,7 @@ const AudioNav = () => {
             <p 
                 className="audio-nav-title"
                 onClick={() => setDemon(state => ({ ...state, page: 'track' }))}    
-            >{demon.tracksData[demon.currentTrackIndex].title}</p>
+            >UNO – DEMON WAV</p>
             <div className="audio-nav-progress">
                 <div
                     className="audio-nav-progress-playhead-begining"
@@ -51,7 +51,7 @@ const AudioNav = () => {
                 <div className="audio-nav-progress-line" />
             </div>
             <div className="audio-nav-svg-container">
-                {demon.startAudio && (
+                {demon.audioLoaded && (
                     <>
                         {demon.trackPlaying ? (
                             <div
@@ -63,7 +63,11 @@ const AudioNav = () => {
                         ) : (
                             <div
                                 className="audio-nav-svg"
-                                onClick={() => setDemon(state => ({ ...state, trackPlaying: !state.trackPlaying}))}
+                                onClick={() => setDemon(state => ({ 
+                                    ...state, 
+                                    trackPlaying: !state.trackPlaying,
+                                    startAudio: true
+                                }))}
                             >
                                 <Play />
                             </div>

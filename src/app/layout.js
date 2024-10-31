@@ -12,7 +12,7 @@ const wavFont = localFont({
   src: [
     {
       path: '../../public/fonts/WAV-Regular.woff2',
-      weight: '400',
+      weight: '300',
       style: 'normal'
     },
     {
@@ -28,7 +28,7 @@ const wavFont = localFont({
     {
       path: '../../public/fonts/DMN-EPITAPH.woff2',
       wieght: '700',
-      style: 'bold'
+      style: 'normal'
     }
   ]
 })

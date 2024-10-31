@@ -1,4 +1,4 @@
-import { SpinnerInfinity } from 'spinners-react';
+import { SpinnerCircularFixed } from 'spinners-react';
 
 const Loading = ({ text }) => {
     return (
@@ -21,12 +21,12 @@ const Loading = ({ text }) => {
             <h1
                 style={{
                     fontWeight: 300,
-                    fontSize: "16px",
+                    fontSize: "14px",
                     color: "#eeeeee",
                     marginBottom: '20px'
                 }}
-            >{text}</h1>
-            <SpinnerInfinity 
+            >Loading</h1>
+            <SpinnerCircularFixed 
                 color="#eeeeee"
                 secondaryColor="#999999"
             />

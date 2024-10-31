@@ -7,6 +7,7 @@
     background: $background-faded;
     top: 0;
     left: 0;
+    backdrop-filter: blur(4px);
 }
 
 .playlist-close-container {
@@ -28,37 +29,41 @@
 .playlist-text {
     font-size: 76px;
     line-height: 66px;
-    font-weight: 700;
+    font-weight: 600;
     color: $background;
     margin: 0;
     padding: 0;
+    text-wrap: nowrap;
 
     @media screen and (min-width: $mobile) {
-        font-size: 130px;
-        line-height: 100px;
+        font-size: 100px;
+        line-height: 70px;
     }
 
     @media screen and (min-width: $tablet) {
         font-size: 180px;
         line-height: 140px;
+        font-weight: 700;
     }
 }
 
 .playlist-more-text {
-    font-size: 76px;
-    line-height: 66px;
-    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 600;
     color: $background-faded;
     margin: 0;
     padding: 0;
+    text-wrap: nowrap;
 
     @media screen and (min-width: $mobile) {
-        font-size: 130px;
-        line-height: 100px;
+        font-size: 90px;
+        line-height: 80px;
     }
 
     @media screen and (min-width: $tablet) {
         font-size: 180px;
         line-height: 140px;
+        font-weight: 700;
     }
 }

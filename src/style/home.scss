@@ -6,13 +6,20 @@
 
 .home-logo-container {
     position: fixed;
-    z-index: 300;
+    z-index: 800;
     top: 10px;
     width: 218px;
     height: 16px;
-    transform: translateX(-50%);
     left: 50%;
     cursor: pointer;
+    transform: scale(1) translateX(-50%);
+    transition: transform .2s ease-in-out;
+    transform-origin: center center;
+
+    &:hover {
+        transform: scale(1.05) translateX(-50%);
+        transition: transform .2s ease-in-out;
+    }
 
     svg {
         fill: $light-text;
