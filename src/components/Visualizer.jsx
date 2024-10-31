@@ -11,7 +11,9 @@ import * as THREE from 'three'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { useControls } from "leva"
 import { TextureLoader } from "three"
-import { Stats, OrbitControls, PositionalAudio } from "@react-three/drei"
+import { Stats, OrbitControls, PositionalAudio, useTexture, useProgress } from "@react-three/drei"
+
+// useTexture.preload('/images/uno_alesia/uno_alesia_desktop.jpg')
 
 const Analyzer = ({
     track,
@@ -61,7 +63,7 @@ const Analyzer = ({
     return (
         <mesh
             ref={imageRef}
-            scale={[viewport.width, viewport.height, 1]}
+            scale={[viewport.height * 1.78, viewport.height, 1]}
             castShadow={true}
             receiveShadow={true}
         >
@@ -87,6 +89,16 @@ const PlayTrack = ({
     const trackRef = useRef(null)
 
     useEffect(() => {
+        console.log('trackRef: ', trackRef)
+        if (trackRef.current) {
+            console.log('track available')
+            if (demon.startAudio) {
+                trackRef.current.play()
+            }
+        }
+    }, [demon.startAudio, trackRef])
+
+    useEffect(() => {
         if (trackRef.current) {
             if (demon.trackPlaying) {
                 trackRef.current.context.resume()
@@ -110,7 +122,7 @@ const PlayTrack = ({
     return (
         <Suspense fallback={null}>
             <PositionalAudio
-                autoplay
+                autoplay={false}
                 url={audioURL}
                 ref={trackRef}
                 loop={false}
@@ -149,6 +161,19 @@ const Visualizer = () => {
     //         // setDesktopImage(useLoader(TextureLoader, `/images/${demon.tracksData[demon.currentTrackIndex].slug}/${demon.tracksData[demon.currentTrackIndex].slug}_desktop.jpg`))
     //     }
     // }, [demon.tracksData, demon.currentTrackIndex])
+
+    // const manager = new THREE.LoadingManager()
+    // manager.onLoad = function ( ) { console.log( 'Loading complete!'); };
+
+    const progress = useProgress()
+
+    useEffect(() => {
+        console.log("prog: ", progress)
+        if (progress.loaded === 5 && progress.total === 5) {
+            console.log("assets loaded")
+            setDemon(state => ({ ...state, assetsLoaded: true }))
+        }
+    }, [progress])
 
     return (
         <section className="visualizer-container">

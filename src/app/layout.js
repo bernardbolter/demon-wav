@@ -5,7 +5,7 @@ import "@/style/index.scss"
 
 export const metadata = {
   title: "Demon WAV",
-  description: "Audio player from Demon Footwear",
+  description: "Demon WAV hatched from the sheer vocation of Alberto Deon to make music. Semantically, WAV is a direct reference to the audio file format known for best preserving the quality of sounds. The expression WAV stands as an etiological allegory to the universe of computer music, and the way it impacted a generational taste. In Demon WAV, music becomes the chosen channel for interweaving cultural and autobiographical references. Expanding the idea of brand, and product into a multifaceted reality that ultimately becomes a mirror to the self.",
 }
 
 const wavFont = localFont({

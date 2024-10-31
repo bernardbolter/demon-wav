@@ -8,6 +8,7 @@ const DemonProvider = ({ children }) => {
 
    const [demon, setDemon] = useState({
         page: "home",
+        startAudio: false,
         trackPlaying: false,
         currentTrackIndex: 0,
         currentTrackTime: 0,
@@ -16,7 +17,8 @@ const DemonProvider = ({ children }) => {
         aboutData: {},
         tracksData: [],
         productsData: [],
-        canvasLoaded: false
+        canvasLoaded: false,
+        assetsLoaded: false
    })
 
    return (

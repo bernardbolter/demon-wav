@@ -51,20 +51,24 @@ const AudioNav = () => {
                 <div className="audio-nav-progress-line" />
             </div>
             <div className="audio-nav-svg-container">
-                {demon.trackPlaying ? (
-                    <div
-                        className="audio-nav-svg"
-                        onClick={() => setDemon(state => ({ ...state, trackPlaying: !state.trackPlaying}))}
-                    >
-                        <Stop />
-                    </div>
-                ) : (
-                    <div
-                        className="audio-nav-svg"
-                        onClick={() => setDemon(state => ({ ...state, trackPlaying: !state.trackPlaying}))}
-                    >
-                        <Play />
-                    </div>
+                {demon.startAudio && (
+                    <>
+                        {demon.trackPlaying ? (
+                            <div
+                                className="audio-nav-svg"
+                                onClick={() => setDemon(state => ({ ...state, trackPlaying: !state.trackPlaying}))}
+                            >
+                                <Stop />
+                            </div>
+                        ) : (
+                            <div
+                                className="audio-nav-svg"
+                                onClick={() => setDemon(state => ({ ...state, trackPlaying: !state.trackPlaying}))}
+                            >
+                                <Play />
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </section>

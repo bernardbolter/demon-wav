@@ -12,8 +12,12 @@ import Visualizer from "@/components/Visualizer"
 
 import Logo from "@/svg/Logo"
 import PlaylistIcon from "@/svg/PlaylistIcon"
+import Play from "@/svg/Play"
 
 import dd from "../../public/demonData.json"
+
+import desktopImg from '../../public/images/uno_alesia/uno_alesia_desktop.jpg'
+import mobileImg from '../../public/images/uno_alesia/uno_alesia_mobile.jpg'
 
 const Home = () => {
   const [demon, setDemon] = useContext(DemonContext)
@@ -34,15 +38,27 @@ const Home = () => {
         {!demon.canvasLoaded && <Loading text="loading demon WAV" />}
         {demon.tracksData.length !==0 && (
           <>
-                  <div 
+                <div 
                   className="home-logo-container"
                   onClick={() => setDemon(state => ({ ...state, page: 'about' }))}
                 >
                   <Logo />
                 </div>
-                  
-                    <Visualizer/>
-                  
+                {!demon.startAudio && (
+                  <div className="loading-image-container">
+                    <img src='/images/uno_alesia/uno_alesia_desktop.jpg' alt="loading desktop" />
+                  </div>
+                )}
+                
+                {(demon.assetsLoaded && !demon.startAudio) && (
+                  <div 
+                    class="start-audio-button-container"
+                    onClick={() => setDemon(state => ({ ...state, startAudio: true }))}
+                  >
+                    <Play />
+                  </div>
+                )}
+                <Visualizer/>
                 <div 
                   className="home-playlist-container"
                   onClick={() => setDemon(state => ({ ...state, page: 'playlist' }))}
