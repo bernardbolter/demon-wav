@@ -58,7 +58,7 @@ const Home = () => {
                   </div>
                 )}
                 <Visualizer/>
-                <AudioNav />
+                {/* <AudioNav /> */}
                 <div 
                   className="home-playlist-container"
                   onClick={() => {
