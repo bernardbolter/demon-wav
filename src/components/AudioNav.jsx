@@ -18,7 +18,7 @@ const AudioNav = () => {
         if (demon.currentTrackLength === 0 || demon.currentTrackTime === 0) {
             return 0
         } else {
-            return (demon.currentTrackTime / demon.currentTrackLength) * (size.width - 20)
+            return ((demon.currentTrackTime / demon.currentTrackLength) * (size.width - 20) + demon.currentTrackOffset)
         }
     }, [demon.currentTrackTime, demon.currentTrackLength])
 
@@ -26,6 +26,19 @@ const AudioNav = () => {
         // console.log("in audionav: ", demon.currentTrackTime, demon.currentTrackLength)
         // console.log("audionav 2: ", demon)
     }, [demon.currentTrackTime, demon.currentTrackLength])
+    
+    const clickedProgressBar = e => {
+        console.log('clicked bar: ', e)
+        if (demon.trackPlaying) {
+            setDemon(state => ({ ...state, trackPlaying: false}))
+        }
+        setDemon(state => ({
+            ...state,
+            trackPlaying: true,
+            newTrackTime: state.currentTrackTime + 20,
+            currentTrackOffset: 20
+        }))
+    } 
 
     return (
         <section className="audio-nav-container">
@@ -48,7 +61,10 @@ const AudioNav = () => {
                 >
                     <PlayHead />
                 </div>
-                <div className="audio-nav-progress-line" />
+                <div 
+                    className="audio-nav-progress-line" 
+                    onClick={e => clickedProgressBar(e)}    
+                />
             </div>
             <div className="audio-nav-svg-container">
                 {demon.audioLoaded && (
@@ -70,10 +86,16 @@ const AudioNav = () => {
                                 }))}
                             >
                                 <Play />
-                            </div>
+                            </div> 
                         )}
                     </>
                 )}
+                <div
+                    style={{ width: 20, height: 20, background: "green"}}
+                    onClick={() => {
+                        setDemon(state => ({ ...state, restartTrack: true }))
+                    }}
+                />
             </div>
         </section>
     )

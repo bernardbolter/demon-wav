@@ -13,10 +13,13 @@ import { useControls } from "leva"
 import { TextureLoader } from "three"
 import { Stats, OrbitControls, PositionalAudio, useTexture, useProgress } from "@react-three/drei"
 
+import { AudioAnalyzer } from "@/hooks/audioAnylizer"
+
 // useTexture.preload('/images/uno_alesia/uno_alesia_desktop.jpg')
 
 const Analyzer = ({
     track,
+    audioURL,
     desktopImage,
     desktopDis,
     mobileImage,
@@ -30,9 +33,11 @@ const Analyzer = ({
 
     const viewport = useThree(state => state.viewport)
 
+    console.log('c time: ', demon.currentTrackTime)
+
     // load track into audio anylyser reference when track is changed
     useEffect(() => {
-        if (track.current) {
+        if (track.current && (audioURL !== null)) {
             analyzerRef.current = new THREE.AudioAnalyser(track.current)
         }
     }, [track.current])
@@ -50,7 +55,7 @@ const Analyzer = ({
 
     // animate the displacement of image based on track analyzer, and send current track time to audio nav
     useFrame(() => {
-        if (analyzerRef.current) {
+        if (analyzerRef.current && (audioURL !== null)) {
             if (track.current.context.currentTime !== 0) {
                 setDemon(state => ({ ...state, currentTrackTime: track.current.context.currentTime - (demon.currentTrackLength * demon.playCount)}))
             }
@@ -84,10 +89,12 @@ const PlayTrack = ({
     desktopDis,
     mobileImage,
     mobileDis,
-    audioURL
+    audioURL,
+    setAudioURL
 }) => {
     const [demon, setDemon] = useContext(DemonContext)
     const trackRef = useRef(null)
+    const [trackState, setTrackState] = useState(null)
 
     useEffect(() => {
         console.log('trackRef: ', trackRef)
@@ -110,6 +117,30 @@ const PlayTrack = ({
     }, [demon.trackPlaying])
 
     useEffect(() => {
+        console.log("new track time: ", demon.newTrackTime)
+        // if (demon.newTrackTime !== 0) {
+        //     trackRef.current.currentTime = demon.newTrackTime
+        // }
+        if (trackRef.current) {
+            console.log('try and move time: ', trackRef.current)
+            trackRef.current.stop()
+            trackRef.current.offset = demon.newTrackTime
+            trackRef.current.play()
+        }
+    }, [demon.newTrackTime])
+    useEffect(() => {
+        if (demon.restartTrack === true) {
+            console.log('resseting audio')
+            setAudioURL(null)
+            trackRef.current = null
+            setTimeout(() => {
+                setAudioURL('/audio/uno_alesia.wav')
+            }, 10)
+            
+        }
+    }, [demon.restartTrack])
+
+    useEffect(() => {
         if (trackRef.current) {
             console.log("trackRef: ", trackRef.current.buffer.duration)
             console.log("trackRef all: ", trackRef.current)
@@ -122,20 +153,40 @@ const PlayTrack = ({
 
     return (
         <Suspense fallback={null}>
-            <PositionalAudio
-                autoplay={false}
-                url={audioURL}
-                ref={trackRef}
-                loop={false}
-                onEnded={() => {
-                    console.log('track ended')
-                    trackRef.current.stop()
-                    trackRef.current.play()
-                    setDemon(state => ({ ...state, playCount: state.playCount + 1 }))
-                }}
-            />
+            {audioURL !== null && (
+                    <PositionalAudio
+                       autoplay={false}
+                       url={audioURL}
+                       // ref={(node) => {
+                       //     trackRef.current = node
+                       //     if (node) {
+                       //         trackRef.current = node
+                       //     }
+                       //     if (trackRef.current !== null) {
+                       //         // console.log("callback: ", trackRef)
+                       //         setDemon(state => ({ ...state, audioLoaded: true }))
+                       //     }
+                       // }}
+                       ref={node => {
+                        console.log("node: ", node, audioURL)
+                        if (audioURL !== null) {
+                            trackRef.current = node
+                        }
+                        // console.log("node: ", node)
+                       }}
+                       loop={false}
+                       onEnded={() => {
+                           console.log('track ended')
+                           trackRef.current.stop()
+                           trackRef.current.play()
+                           setDemon(state => ({ ...state, playCount: state.playCount + 1 }))
+                       }}
+                   />
+            )}
+     
             <Analyzer 
-                track={trackRef} 
+                track={trackRef}
+                audioURL={audioURL}
                 desktopImage={desktopImage}
                 desktopDis={desktopDis}
                 mobileImage={mobileImage}
@@ -196,6 +247,7 @@ const Visualizer = () => {
                         mobileImage={mobileImage}
                         mobileDis={mobileDis}
                         audioURL={audioURL}
+                        setAudioURL={setAudioURL}
                     />
                     <OrbitControls />
                 </Suspense>

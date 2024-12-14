@@ -13,6 +13,7 @@ const DemonProvider = ({ children }) => {
         currentTrackIndex: 0,
         currentTrackTime: 0,
         currentTrackLength: 0,
+        currentTrackOffset: 0,
         playCount: 0,
         aboutData: {},
         tracksData: [],
@@ -20,7 +21,9 @@ const DemonProvider = ({ children }) => {
         canvasLoaded: false,
         assetsLoaded: false,
         audioLoaded: false,
-        audioPlaying: false
+        audioPlaying: false,
+        newTrackTime: 0,
+        restartTrack: false
    })
 
    return (
