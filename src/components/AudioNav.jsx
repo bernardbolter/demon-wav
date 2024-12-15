@@ -7,13 +7,14 @@ import Play from '@/svg/Play'
 import Stop from '@/svg/Stop'
 import PlayHead from '@/svg/PlayHead'
 
-const AudioNav = () => {
+const AudioNav = ({ audioElmRef }) => {
+    // console.log("audioElm: ", audioElmRef)
     const [demon, setDemon] = useContext(DemonContext)
     const size = useWindowSize()
     // console.log(demon.currentTrackTime)
     const playheadX = useMemo(() => {
-        // console.log(demon.currentTrackTime)
-        // console.log(demon.currentTrackLength)
+        console.log(demon.currentTrackTime)
+        console.log(demon.currentTrackLength)
         // console.log((demon.currentTrackTime / demon.currentTrackLength) * (size.width - 20))
         if (demon.currentTrackLength === 0 || demon.currentTrackTime === 0) {
             return 0
@@ -39,6 +40,12 @@ const AudioNav = () => {
             currentTrackOffset: 20
         }))
     } 
+
+    const checkAudioElm = ( audioElmRef ) => {
+        console.log('checking')
+        console.log(audioElmRef.current.currentTime)
+        audioElmRef.current.currentTime = 120
+    }
 
     return (
         <section className="audio-nav-container">
@@ -93,7 +100,7 @@ const AudioNav = () => {
                 <div
                     style={{ width: 20, height: 20, background: "green"}}
                     onClick={() => {
-                        setDemon(state => ({ ...state, restartTrack: true }))
+                        checkAudioElm(audioElmRef)
                     }}
                 />
             </div>

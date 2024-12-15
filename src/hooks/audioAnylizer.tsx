@@ -15,10 +15,10 @@ export class AudioAnalyzer {
       this.sourceNode.connect(this.ctx.destination);
     }
   
-    // getFFT(): Uint8Array {
-    //   const data = new Uint8Array(this.#analyzerNode.frequencyBinCount);
-    //   this.#analyzerNode.getByteFrequencyData(data);
-    //   return data;
-    // }
+    getFFT(): Uint8Array {
+      const data = new Uint8Array(this.analyzerNode.frequencyBinCount);
+      this.analyzerNode.getByteFrequencyData(data);
+      return data;
+    }
   }
   

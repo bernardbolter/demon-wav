@@ -9,6 +9,7 @@ import Playlist from '@/components/Playlist'
 import AboutTrack from "@/components/AboutTrack"
 import Visualizer from "@/components/Visualizer"
 import AudioNav from "@/components/AudioNav"
+import NewVis from "@/components/NewVis"
 
 import Logo from "@/svg/Logo"
 import PlaylistIcon from "@/svg/PlaylistIcon"
@@ -33,7 +34,7 @@ const Home = () => {
 
   return (
       <section className="home-container">
-        {!demon.assetsLoaded && <Loading text="loading demon WAV" />}
+        {/* {!demon.assetsLoaded && <Loading text="loading demon WAV" />} */}
         {demon.tracksData.length !==0 && (
           <>
                 <div 
@@ -57,7 +58,8 @@ const Home = () => {
                     )}
                   </div>
                 )}
-                <Visualizer/>
+                {/* <Visualizer/> */}
+                <NewVis />
                 {/* <AudioNav /> */}
                 {/* <div 
                   className="home-playlist-container"

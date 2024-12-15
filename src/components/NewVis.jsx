@@ -7,30 +7,106 @@ import { useWindowSize } from "@/hooks/useWindowSize"
 import Loading from "./Loading"
 
 import * as THREE from 'three'
+import { TextureLoader } from "three"
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
-import {  OrbitalControls, useProgress } from "@react-three/drei"
+import { OrbitControls, useProgress } from "@react-three/drei"
+import { extend } from '@react-three/fiber'
 
 import { AudioAnalyzer } from "@/hooks/audioAnylizer"
+import AudioNav from "./AudioNav"
 // https://sabigara.com/posts/audio-visualizer
+
+// extend({ OrbitalControls, Canvas, useLoader, useProgress, useFrame })
+
+
+const TheVis = ({ analyzer }) => {
+    const [demon, setDemon] = useContext(DemonContext)
+    const imageRef = useRef(null)
+    const size = useWindowSize()
+    const viewport = useThree(state => state.viewport)
+    const [desktopImage, setDesktopImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg'))
+    const [desktopDis, setDesktopDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg'))
+    const [mobileImage, setMobileImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg'))
+    const [mobileDis, setMobileDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
+
+    // console.log(analyzer)
+    useEffect(() => {
+        console.log("straight: ", analyzer)
+    }, [analyzer])
+
+    var getAverage = function(dataArray){
+        var total = 0,                               // initialize to 0
+            i = 0, length = dataArray.length;
+        while(i < length) total += dataArray[i++];   // add all
+        return length ? total / length : 0;          // divide (when length !== 0)
+    }
+
+    useFrame(() => {
+        if (analyzer) {
+            // console.log(analyzer)
+
+            if (analyzer.sourceNode.mediaElement.currentTime !== 0) {
+                setDemon(state => ({ 
+                    ...state, 
+                    currentTrackTime: analyzer.sourceNode.mediaElement.currentTime,
+                    currentTrackLength: analyzer.sourceNode.mediaElement.duration
+                
+                }))
+            }
+            
+            const fft = analyzer.getFFT();
+            // console.log(fft)
+            var theAverage = getAverage(fft)
+            // console.log(theAverage)
+            imageRef.current.material.displacementScale = -theAverage
+            // const floatData = analyzer.analyzerNode.getFloatFrequencyData()
+            // console.log(floatData)
+        }
+    })
+
+    return (
+        <mesh
+            ref={imageRef}
+            scale={size.width > 768 ? [viewport.height * 1.78, viewport.height, 1] : [viewport.height * .6, viewport.height, 1.78]}
+            castShadow={true}
+            receiveShadow={true}
+        >
+            <planeGeometry args={[1, 1, 180, 180]} />
+            <meshStandardMaterial
+                    // wireframe={material.wireframe}
+                    map={size.width > 768 ? desktopImage : mobileImage}
+                    displacementMap={size.width > 768 ? desktopDis : mobileDis}
+                    // displacementScale={material.displacementScale}
+                    side={'white'}
+            />
+        </mesh>
+    )
+}
 
 const NewVis = () => {    
     const [demon, setDemon] = useContext(DemonContext)
     const size = useWindowSize()
 
-    const [desktopImage, setDesktopImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg'))
-    const [desktopDis, setDesktopDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg'))
-    const [mobileImage, setMobileImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg'))
-    const [mobileDis, setMobileDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
-    const [audioURL, setAudioURL] = useState('/audio/uno_alesia.wav')
+    // const [desktopImage, setDesktopImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg'))
+    // const [desktopDis, setDesktopDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg'))
+    // const [mobileImage, setMobileImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg'))
+    // const [mobileDis, setMobileDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
+    const [audioURL, setAudioURL] = useState(null)
     const progress = useProgress()
+    const [analyzer, setAnalyzer] = useState(null)
 
     const imageRef = useRef(null)
     const analyzerRef = useRef(null)
     const audioRef = useRef(null)
+    const audioElmRef = useRef(null)
 
-    useEffect(() => {
-
-    }, [])
+    const onFileChange = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setAudioURL(URL.createObjectURL(file))
+        setAnalyzer(new AudioAnalyzer(audioElmRef.current))
+        // setDemon(state => {( ...state, currentTrackLength: analyzer.sourceNode.mediaElement.duration)})
+      };
 
     useEffect(() => {
         console.log("prog: ", progress)
@@ -48,7 +124,7 @@ const NewVis = () => {
         <div className="visualizer-container">
             <Canvas>
                 <ambientLight intensity={2} />
-                <mesh
+                {/* <mesh
                     ref={imageRef}
                     scale={size.width > 768 ? [viewport.height * 1.78, viewport.height, 1] : [viewport.height * .6, viewport.height, 1.78]}
                     castShadow={true}
@@ -62,10 +138,31 @@ const NewVis = () => {
                             // displacementScale={material.displacementScale}
                             side={'white'}
                     />
-                </mesh>
-                <OrbitalControls />
+                </mesh> */}
+                <OrbitControls />
+                <TheVis analyzer={analyzer} />
             </Canvas>
-            <AudioNav />
+            <AudioNav audioElmRef={audioElmRef} />
+            <audio
+                src={audioURL}
+                controls
+                ref={audioElmRef}
+                style={{
+                    position: "fixed",
+                    bottom: 0,
+                    zIndex: 4000
+                }}
+            />
+            <input 
+                type="file" 
+                accept="audio/*" 
+                onChange={onFileChange} 
+                style={{
+                    position: 'fixed',
+                    bottom: 0,
+                    right: 0
+                }}    
+            />
         </div>
     )
 }
