@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from 'react'
+import { useContext, useEffect, useMemo, useRef } from 'react'
 import { DemonContext } from '@/providers/DemonProvider'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
@@ -7,10 +7,14 @@ import Play from '@/svg/Play'
 import Stop from '@/svg/Stop'
 import PlayHead from '@/svg/PlayHead'
 
+import Draggable from 'react-draggable'
+
 const AudioNav = ({ audioElmRef }) => {
     // console.log("audioElm: ", audioElmRef)
     const [demon, setDemon] = useContext(DemonContext)
     const size = useWindowSize()
+    const lineRef = useRef()
+
     // console.log(demon.currentTrackTime)
     const playheadX = useMemo(() => {
         console.log(demon.currentTrackTime)
@@ -29,23 +33,17 @@ const AudioNav = ({ audioElmRef }) => {
     }, [demon.currentTrackTime, demon.currentTrackLength])
     
     const clickedProgressBar = e => {
-        console.log('clicked bar: ', e)
-        if (demon.trackPlaying) {
-            setDemon(state => ({ ...state, trackPlaying: false}))
-        }
+        console.log('clicked bar: ', e.clientX, e)
+        console.log(lineRef.current, size.width)
+        const newTime = (e.clientX * demon.currentTrackLength / lineRef.current.offsetWidth) - 3
+        console.log(newTime)
+        audioElmRef.current.currentTime = newTime
+
         setDemon(state => ({
             ...state,
-            trackPlaying: true,
-            newTrackTime: state.currentTrackTime + 20,
-            currentTrackOffset: 20
+            currentTrackTime: newTime
         }))
     } 
-
-    const checkAudioElm = ( audioElmRef ) => {
-        console.log('checking')
-        console.log(audioElmRef.current.currentTime)
-        audioElmRef.current.currentTime = 120
-    }
 
     return (
         <section className="audio-nav-container">
@@ -53,24 +51,39 @@ const AudioNav = ({ audioElmRef }) => {
                 className="audio-nav-title"
                 onClick={() => setDemon(state => ({ ...state, page: 'track' }))}    
             >UNO – DEMON WAV</p>
-            <div className="audio-nav-progress">
+            <div 
+                className="audio-nav-progress"
+                onClick={e => clickedProgressBar(e)}    
+            >
                 <div
                     className="audio-nav-progress-playhead-begining"
                     style={{
                         width: `${playheadX}px`
                     }}
                 />
-                <div 
-                    className="audio-nav-progress-playhead-container"
-                    style={{
-                        transform: `translateX(${playheadX}px)`
-                    }}    
-                >
-                    <PlayHead />
-                </div>
+                {/* <Draggable
+                    axis="x"
+                    handle=".handle"
+                    defaultPosition={{x: 0, y: 0}}
+                    position={null}
+                    grid={[25, 25]}
+                    // scale={1}
+                    // onStart={this.handleStart}
+                    // onDrag={this.handleDrag}
+                    // onStop={this.handleStop}
+                    > */}
+                    <div 
+                        className="audio-nav-progress-playhead-container"
+                        style={{
+                            transform: `translateX(${playheadX}px)`
+                        }}    
+                    >
+                        <PlayHead />
+                    </div>
+                {/* </Draggable> */}
                 <div 
                     className="audio-nav-progress-line" 
-                    onClick={e => clickedProgressBar(e)}    
+                    ref={lineRef}    
                 />
             </div>
             <div className="audio-nav-svg-container">
@@ -97,12 +110,6 @@ const AudioNav = ({ audioElmRef }) => {
                         )}
                     </>
                 )}
-                <div
-                    style={{ width: 20, height: 20, background: "green"}}
-                    onClick={() => {
-                        checkAudioElm(audioElmRef)
-                    }}
-                />
             </div>
         </section>
     )

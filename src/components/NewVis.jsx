@@ -29,10 +29,9 @@ const TheVis = ({ analyzer }) => {
     const [mobileImage, setMobileImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg'))
     const [mobileDis, setMobileDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
 
-    // console.log(analyzer)
-    useEffect(() => {
-        console.log("straight: ", analyzer)
-    }, [analyzer])
+    // useEffect(() => {
+    //     console.log("straight: ", analyzer)
+    // }, [analyzer])
 
     var getAverage = function(dataArray){
         var total = 0,                               // initialize to 0
@@ -77,7 +76,7 @@ const TheVis = ({ analyzer }) => {
                     map={size.width > 768 ? desktopImage : mobileImage}
                     displacementMap={size.width > 768 ? desktopDis : mobileDis}
                     // displacementScale={material.displacementScale}
-                    side={'white'}
+                    side={THREE.DoubleSide}
             />
         </mesh>
     )
@@ -107,6 +106,11 @@ const NewVis = () => {
         setAnalyzer(new AudioAnalyzer(audioElmRef.current))
         // setDemon(state => {( ...state, currentTrackLength: analyzer.sourceNode.mediaElement.duration)})
       };
+
+    useEffect(() => {
+        setAudioURL('/audio/uno_alesia.mp3')
+        setAnalyzer(new AudioAnalyzer(audioElmRef.current))
+    }, [])
 
     useEffect(() => {
         console.log("prog: ", progress)
@@ -152,16 +156,6 @@ const NewVis = () => {
                     bottom: 0,
                     zIndex: 4000
                 }}
-            />
-            <input 
-                type="file" 
-                accept="audio/*" 
-                onChange={onFileChange} 
-                style={{
-                    position: 'fixed',
-                    bottom: 0,
-                    right: 0
-                }}    
             />
         </div>
     )
