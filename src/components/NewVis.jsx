@@ -57,7 +57,7 @@ const TheVis = ({ analyzer }) => {
             // console.log(fft)
             var theAverage = getAverage(fft)
             // console.log(theAverage)
-            imageRef.current.material.displacementScale = -theAverage
+            imageRef.current.material.displacementScale = -theAverage / 2
             // const floatData = analyzer.analyzerNode.getFloatFrequencyData()
             // console.log(floatData)
         }
@@ -99,13 +99,13 @@ const NewVis = () => {
     const audioRef = useRef(null)
     const audioElmRef = useRef(null)
 
-    const onFileChange = (e) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-        setAudioURL(URL.createObjectURL(file))
-        setAnalyzer(new AudioAnalyzer(audioElmRef.current))
-        // setDemon(state => {( ...state, currentTrackLength: analyzer.sourceNode.mediaElement.duration)})
-      };
+    // const onFileChange = (e) => {
+    //     const file = e.target.files?.[0];
+    //     if (!file) return;
+    //     setAudioURL(URL.createObjectURL(file))
+    //     setAnalyzer(new AudioAnalyzer(audioElmRef.current))
+    //     // setDemon(state => {( ...state, currentTrackLength: analyzer.sourceNode.mediaElement.duration)})
+    //   };
 
     useEffect(() => {
         setAudioURL('/audio/uno_alesia.mp3')
@@ -171,16 +171,14 @@ const NewVis = () => {
             </Canvas>
             <AudioNav audioElmRef={audioElmRef} />
             <audio
-                className="audio-player"
                 src={audioURL}
-                controls
                 loop
+                autoPlay
                 ref={audioElmRef}
                 style={{
                     position: "fixed",
-                    bottom: 0,
-                    zIndex: 4000,
-                    display: 'none'
+                    top: 0,
+                    zIndex: 4000
                 }}
             />
         </div>
