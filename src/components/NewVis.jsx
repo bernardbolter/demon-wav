@@ -172,6 +172,7 @@ const NewVis = () => {
             <AudioNav audioElmRef={audioElmRef} />
             <audio
                 src={audioURL}
+                controls
                 loop
                 autoPlay
                 ref={audioElmRef}
