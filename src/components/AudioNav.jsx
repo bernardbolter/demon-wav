@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useRef } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { DemonContext } from '@/providers/DemonProvider'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
@@ -43,7 +43,7 @@ const AudioNav = ({ audioElmRef }) => {
             ...state,
             currentTrackTime: newTime
         }))
-    } 
+    }
 
     return (
         <section className="audio-nav-container">
@@ -76,7 +76,7 @@ const AudioNav = ({ audioElmRef }) => {
                         className="audio-nav-progress-playhead-container"
                         style={{
                             transform: `translateX(${playheadX}px)`
-                        }}    
+                        }}
                     >
                         <PlayHead />
                     </div>
@@ -92,18 +92,23 @@ const AudioNav = ({ audioElmRef }) => {
                         {demon.trackPlaying ? (
                             <div
                                 className="audio-nav-svg"
-                                onClick={() => setDemon(state => ({ ...state, trackPlaying: !state.trackPlaying}))}
+                                onClick={() => {
+                                    audioElmRef.current.pause()
+                                    setDemon(state => ({ ...state, trackPlaying: false}))
+                                }}
                             >
                                 <Stop />
                             </div>
                         ) : (
                             <div
                                 className="audio-nav-svg"
-                                onClick={() => setDemon(state => ({ 
-                                    ...state, 
-                                    trackPlaying: !state.trackPlaying,
-                                    startAudio: true
-                                }))}
+                                onClick={() => {
+                                    audioElmRef.current.play()
+                                    setDemon(state => ({ 
+                                        ...state, 
+                                        trackPlaying: true
+                                    }))
+                                }}
                             >
                                 <Play />
                             </div> 

@@ -20,10 +20,12 @@ const DemonProvider = ({ children }) => {
         productsData: [],
         canvasLoaded: false,
         assetsLoaded: false,
-        audioLoaded: false,
+        audioLoaded: true,
         audioPlaying: false,
         newTrackTime: 0,
-        restartTrack: false
+        restartTrack: false,
+        backgroundOffestX: 0,
+        backgroundOffestY: 0,
    })
 
    return (

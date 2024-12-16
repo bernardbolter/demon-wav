@@ -30,12 +30,14 @@
     height: 4px;
     background: $light-text-faded;
     position: relative;
+    filter: blur(1px);
 }
 
 .audio-nav-progress-playhead-begining {
     height: 4px;
     background: $light-text;
     position: fixed;
+    filter: blur(1px);
 }
 
 .audio-nav-progress-playhead-container {
@@ -45,6 +47,7 @@
     transform-origin: center;
     margin-top: -10px;
     left: 0;
+    filter: blur(1px);
 
     svg {
         fill: $light-text;

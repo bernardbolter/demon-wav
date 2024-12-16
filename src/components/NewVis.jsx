@@ -124,8 +124,31 @@ const NewVis = () => {
         }
     }, [progress])
 
+    const onMouseMove = e => {
+        const { clientX, clientY, currentTarget } = e;
+
+        // Calculate the mouse position relative to the center of the element
+        const { width, height, left, top } = currentTarget.getBoundingClientRect();
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
+
+        // Calculate offsets as a fraction of element size
+        const x = (clientX - centerX) / width;
+        const y = (clientY - centerY) / height;
+
+        // Scale the movement effect
+        setDemon(state => ({
+            ...state,
+            backgroundOffestX: x * 49,
+            backgroundOffestY: y * 49
+        }))
+    }
+
     return (
-        <div className="visualizer-container">
+        <div 
+            className="visualizer-container"
+            onMouseMove={onMouseMove}
+        >
             <Canvas>
                 <ambientLight intensity={2} />
                 {/* <mesh

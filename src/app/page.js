@@ -14,6 +14,7 @@ import NewVis from "@/components/NewVis"
 import Logo from "@/svg/Logo"
 import PlaylistIcon from "@/svg/PlaylistIcon"
 import Play from "@/svg/Play"
+import Tilt from 'react-parallax-tilt'
 
 import dd from "../../public/demonData.json"
 
@@ -32,6 +33,8 @@ const Home = () => {
     }))
   }, [dd])
 
+
+
   return (
       <section className="home-container">
         {/* {!demon.assetsLoaded && <Loading text="loading demon WAV" />} */}
@@ -49,15 +52,19 @@ const Home = () => {
                 >
                   <Logo />
                 </div>
-                {!demon.audioLoaded && (
-                  <div className="loading-image-container">
+                  <div 
+                    className="loading-image-container"
+                    style={{
+                      transform: `translate(${demon.backgroundOffestX}px, ${demon.backgroundOffestY}px) scale(1.15)`,
+                      opacity: .5
+                    }}
+                  >
                     {size.width > 768 ? (
-                      <img src='/images/uno_alesia/uno_alesia_desktop.jpg' alt="loading desktop" />
+                        <img src='/images/uno_alesia/uno_alesia_desktop.jpg' alt="loading desktop" />
                     ) : (
                       <img src='/images/uno_alesia/uno_alesia_mobile.jpg' alt="loading mobile" />
                     )}
                   </div>
-                )}
                 {/* <Visualizer/> */}
                 <NewVis />
                 {/* <AudioNav /> */}
