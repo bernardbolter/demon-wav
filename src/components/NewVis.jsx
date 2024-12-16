@@ -171,13 +171,16 @@ const NewVis = () => {
             </Canvas>
             <AudioNav audioElmRef={audioElmRef} />
             <audio
+                className="audio-player"
                 src={audioURL}
                 controls
+                loop
                 ref={audioElmRef}
                 style={{
                     position: "fixed",
                     bottom: 0,
-                    zIndex: 4000
+                    zIndex: 4000,
+                    display: 'none'
                 }}
             />
         </div>
