@@ -21,18 +21,23 @@ import AudioNav from "./AudioNav"
 // import { ReactP5Wrapper } from "@p5-wrapper/react"
 // import { Sketch } from '@p5-wrapper/react'
 import { NextReactP5Wrapper } from "@p5-wrapper/next"
+import { sketch } from './sketch'
 
-const sketch = p5 => {
-    p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL)
+// window.p5 = p5
 
-    p5.updateWithProps = props => {
-        console.log(props)
-    }
+// await import("p5/lib/addons/p5.sound")
 
-    p5.draw = () => {
-        console.log('p5s')
-    }
-}
+// const sketch = p5 => {
+//     p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL)
+
+//     p5.updateWithProps = props => {
+//         // console.log(props)
+//     }
+
+//     p5.draw = () => {
+//         // console.log('p5s')
+//     }
+// }
 
 
 const TheVis = ({ analyzer }) => {

@@ -14,8 +14,29 @@ import { TextureLoader } from "three"
 import { Stats, OrbitControls, PositionalAudio, useTexture, useProgress } from "@react-three/drei"
 
 import { AudioAnalyzer } from "@/hooks/audioAnylizer"
+import { NextReactP5Wrapper } from "@p5-wrapper/next"
+import * as p5 from "p5"
+
+window.p5 = p5
+
+// await import("p5/lib/addons/p5.sound")
 
 // useTexture.preload('/images/uno_alesia/uno_alesia_desktop.jpg')
+
+// const sketch = (p5) => {
+//     p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+  
+//     p5.draw = () => {
+//       p5.background(250);
+//       p5.normalMaterial();
+//       p5.push();
+//       p5.rotateZ(p5.frameCount * 0.01);
+//       p5.rotateX(p5.frameCount * 0.01);
+//       p5.rotateY(p5.frameCount * 0.01);
+//       p5.plane(100);
+//       p5.pop();
+//     };
+//   };
 
 const Analyzer = ({
     track,
@@ -253,6 +274,7 @@ const Visualizer = () => {
                 </Suspense>
             </Canvas>
             <AudioNav />
+            <NextReactP5Wrapper sketch={sketch} />
         </section>
     )
 }
