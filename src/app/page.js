@@ -8,8 +8,6 @@ import Loading from "@/components/Loading"
 import AboutWAV from '@/components/AboutWAV'
 import Playlist from '@/components/Playlist'
 import AboutTrack from "@/components/AboutTrack"
-import Visualizer from "@/components/Visualizer"
-import AudioNav from "@/components/AudioNav"
 import NewVis from "@/components/NewVis"
 
 import Logo from "@/svg/Logo"
