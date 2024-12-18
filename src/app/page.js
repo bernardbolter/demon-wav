@@ -14,7 +14,7 @@ import NewVis from "@/components/NewVis"
 import Logo from "@/svg/Logo"
 import PlaylistIcon from "@/svg/PlaylistIcon"
 import Play from "@/svg/Play"
-import Tilt from 'react-parallax-tilt'
+// import Tilt from 'react-parallax-tilt'
 
 import dd from "../../public/demonData.json"
 

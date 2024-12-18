@@ -18,6 +18,22 @@ import AudioNav from "./AudioNav"
 
 // extend({ OrbitalControls, Canvas, useLoader, useProgress, useFrame })
 
+// import { ReactP5Wrapper } from "@p5-wrapper/react"
+// import { Sketch } from '@p5-wrapper/react'
+import { NextReactP5Wrapper } from "@p5-wrapper/next"
+
+const sketch = p5 => {
+    p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL)
+
+    p5.updateWithProps = props => {
+        console.log(props)
+    }
+
+    p5.draw = () => {
+        console.log('p5s')
+    }
+}
+
 
 const TheVis = ({ analyzer }) => {
     const [demon, setDemon] = useContext(DemonContext)
@@ -182,6 +198,7 @@ const NewVis = () => {
                     zIndex: 4000
                 }}
             />
+            <NextReactP5Wrapper sketch={sketch} demon={demon} />
         </div>
     )
 }
