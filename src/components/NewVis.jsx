@@ -18,27 +18,6 @@ import AudioNav from "./AudioNav"
 
 // extend({ OrbitalControls, Canvas, useLoader, useProgress, useFrame })
 
-// import { ReactP5Wrapper } from "@p5-wrapper/react"
-// import { Sketch } from '@p5-wrapper/react'
-// import { NextReactP5Wrapper } from "@p5-wrapper/next"
-// import { sketch } from './sketch'
-
-// window.p5 = p5
-
-// await import("p5/lib/addons/p5.sound")
-
-// const sketch = p5 => {
-//     p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL)
-
-//     p5.updateWithProps = props => {
-//         // console.log(props)
-//     }
-
-//     p5.draw = () => {
-//         // console.log('p5s')
-//     }
-// }
-
 
 const TheVis = ({ analyzer }) => {
     const [demon, setDemon] = useContext(DemonContext)
@@ -50,9 +29,6 @@ const TheVis = ({ analyzer }) => {
     const [mobileImage, setMobileImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg'))
     const [mobileDis, setMobileDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
 
-    // useEffect(() => {
-    //     console.log("straight: ", analyzer)
-    // }, [analyzer])
 
     var getAverage = function(dataArray){
         var total = 0,                               // initialize to 0
@@ -128,14 +104,6 @@ const NewVis = () => {
         setAnalyzer(new AudioAnalyzer(audioElmRef.current))
     }, [])
 
-    // const onFileChange = (e) => {
-    //     const file = e.target.files?.[0];
-    //     if (!file) return;
-    //     setAudioURL(URL.createObjectURL(file))
-    //     setAnalyzer(new AudioAnalyzer(audioElmRef.current))
-    //     // setDemon(state => {( ...state, currentTrackLength: analyzer.sourceNode.mediaElement.duration)})
-    //   };
-
     // useEffect(() => {
     //     console.log(audioElmRef)
     //     if (!audioContext) {
@@ -160,7 +128,6 @@ const NewVis = () => {
     //     //     console.log(analyzer)
     //     // // }
         
-    //     // if (window !== undefined) {
     //     //   const AudioContext = window.AudioContext || window.webkitAudioContext;
     //     // //   const ctx = new AudioContext();
     //     // // setCtx(new AudioContext())
@@ -175,12 +142,7 @@ const NewVis = () => {
     //     //   const analayser = ctx.createAnalyser();
     //     //   src.connect(analayser);
     //     //   analayser.connect(ctx.destination);
-    //     // }
     //   }, []);
-
-    //   useEffect(() => {
-    //     console.log(source)
-    //   }, audioURL)
 
 
     useEffect(() => {
