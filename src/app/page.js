@@ -42,9 +42,9 @@ const Home = () => {
           <>
                 <div 
                   className="home-logo-container"
-                  style={{
-                    transform: `translateY(${demon.logoClicked ? 0 : (size.height / 2 ) - 10}px) translateX(-50%)`
-                  }}
+                  // style={{
+                  //   transform: `translateY(${demon.logoClicked ? 0 : (size.height / 2 ) - 10}px) translateX(-50%)`
+                  // }}
                   onClick={() => {
                     if (!demon.logoClicked) {
                       setDemon(state => ({ ...state, logoClicked: true, startAudio: true }))
