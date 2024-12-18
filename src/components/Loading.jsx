@@ -1,3 +1,6 @@
+
+"use client"
+
 import { SpinnerCircularFixed } from 'spinners-react';
 
 const Loading = ({ text }) => {

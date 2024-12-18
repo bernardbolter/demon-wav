@@ -1,4 +1,5 @@
 "use client"
+
 import { useContext, useEffect } from "react"
 import { DemonContext } from "@/providers/DemonProvider"
 import { useWindowSize } from "@/hooks/useWindowSize"
@@ -38,13 +39,11 @@ const Home = () => {
   return (
       <section className="home-container">
         {!demon.assetsLoaded && <Loading text="loading demon WAV" />}
-        {demon.tracksData.length !==0 && (
-          <>
                 <div 
                   className="home-logo-container"
-                  // style={{
-                  //   transform: `translateY(${demon.logoClicked ? 0 : (size.height / 2 ) - 10}px) translateX(-50%)`
-                  // }}
+                  style={{
+                    transform: `translateY(${demon.logoClicked ? 0 : (size.height / 2 ) - 10}px) translateX(-50%)`
+                  }}
                   onClick={() => {
                     if (!demon.logoClicked) {
                       setDemon(state => ({ ...state, logoClicked: true, startAudio: true }))
@@ -107,8 +106,6 @@ const Home = () => {
                 {demon.page === 'track' && (
                     <AboutTrack />
                 )}
-            </>
-        )}
   </section>
   )
 }
