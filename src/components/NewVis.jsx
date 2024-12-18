@@ -20,8 +20,8 @@ import AudioNav from "./AudioNav"
 
 // import { ReactP5Wrapper } from "@p5-wrapper/react"
 // import { Sketch } from '@p5-wrapper/react'
-import { NextReactP5Wrapper } from "@p5-wrapper/next"
-import { sketch } from './sketch'
+// import { NextReactP5Wrapper } from "@p5-wrapper/next"
+// import { sketch } from './sketch'
 
 // window.p5 = p5
 
@@ -111,14 +111,22 @@ const NewVis = () => {
     // const [desktopDis, setDesktopDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg'))
     // const [mobileImage, setMobileImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg'))
     // const [mobileDis, setMobileDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
-    const [audioURL, setAudioURL] = useState(null)
+    const [audioURL, setAudioURL] = useState('/audio/uno_alesia.mp3')
     const progress = useProgress()
     const [analyzer, setAnalyzer] = useState(null)
+    const [source, setSource] = useState(null)
+    // const [ctx, setCtx] = useState(new AudioContext())
 
     const imageRef = useRef(null)
     const analyzerRef = useRef(null)
     const audioRef = useRef(null)
     const audioElmRef = useRef(null)
+
+    let audioContext
+
+    useEffect(() => {
+        setAnalyzer(new AudioAnalyzer(audioElmRef.current))
+    }, [])
 
     // const onFileChange = (e) => {
     //     const file = e.target.files?.[0];
@@ -128,20 +136,62 @@ const NewVis = () => {
     //     // setDemon(state => {( ...state, currentTrackLength: analyzer.sourceNode.mediaElement.duration)})
     //   };
 
-    useEffect(() => {
-        setAudioURL('/audio/uno_alesia.mp3')
-        setAnalyzer(new AudioAnalyzer(audioElmRef.current))
-    }, [])
+    // useEffect(() => {
+    //     console.log(audioElmRef)
+    //     if (!audioContext) {
+    //         audioContext = new AudioContext()
+    //         const analyser = audioContext.createAnalyser();
+    //         const audioSrc = audioContext.createMediaElementSource(audioElmRef.current);
+        
+    //         audioSrc
+    //             .connect(analyser)
+    //             .connect(audioContext.destination);
+    //         setAnalyzer(audioContext)
+    //     }
+        
+    //     // if (!ctx) {
+    //         // const audioCtx = new AudioContext();
+    //         // const myAudio = document.querySelector("audio");
+    //     //     const source = ctx.createMediaElementSource(audioElmRef);
+    //     //     const newAnal = ctx.createAnalyser()
+    //     //     source.connect(newAnal)
+    //     //     newAnal.connect(ctx.destination)
+    //     //     setAnalyzer(newAnal)
+    //     //     console.log(analyzer)
+    //     // // }
+        
+    //     // if (window !== undefined) {
+    //     //   const AudioContext = window.AudioContext || window.webkitAudioContext;
+    //     // //   const ctx = new AudioContext();
+    //     // // setCtx(new AudioContext())
+    //     // console.log(ctx)
+    //     // setSource(ctx.createMediaElementSource(audioElmRef.current))
+          
+    //       //declare source just once
+    //     //   const src = ctx.createMediaElementSource(audioElmRef.current);
+    //     //   setSource(src);
+          
+    //     //   //connect analayser to source
+    //     //   const analayser = ctx.createAnalyser();
+    //     //   src.connect(analayser);
+    //     //   analayser.connect(ctx.destination);
+    //     // }
+    //   }, []);
+
+    //   useEffect(() => {
+    //     console.log(source)
+    //   }, audioURL)
+
 
     useEffect(() => {
         console.log("prog: ", progress)
-        if (progress.loaded === 5 && progress.total === 5) {
+        if (progress.loaded === 4 && progress.total === 4) {
             console.log("assets loaded")
             setDemon(state => ({ ...state, assetsLoaded: true }))
-            setTimeout(() => {
-                console.log("set audio loaded")
-                setDemon(state => ({ ...state, audioLoaded: true }))
-            }, [3000])
+            // setTimeout(() => {
+            //     console.log("set audio loaded")
+            //     setDemon(state => ({ ...state, audioLoaded: true }))
+            // }, [3000])
         }
     }, [progress])
 
@@ -166,6 +216,7 @@ const NewVis = () => {
     }
 
     return (
+        <>
         <div 
             className="visualizer-container"
             onMouseMove={onMouseMove}
@@ -190,21 +241,21 @@ const NewVis = () => {
                 <OrbitControls />
                 <TheVis analyzer={analyzer} />
             </Canvas>
-            <AudioNav audioElmRef={audioElmRef} />
-            <audio
-                src={audioURL}
-                controls
-                loop
-                autoPlay
-                ref={audioElmRef}
-                style={{
-                    position: "fixed",
-                    top: 0,
-                    zIndex: 4000
-                }}
-            />
-            <NextReactP5Wrapper sketch={sketch} demon={demon} />
+            
         </div>
+        <AudioNav audioElmRef={audioElmRef} />
+        <audio
+            src={audioURL}
+            loop
+            autoPlay
+            ref={audioElmRef}
+            style={{
+                position: "fixed",
+                top: 0,
+                zIndex: 4000
+            }}
+        />
+        </>
     )
 }
 

@@ -14,18 +14,18 @@ const Loading = ({ text }) => {
                 position: 'fixed',
                 top: 0,
                 left: 0,
-                zIndex: 600
+                zIndex: 4001
 
             }}
         >
-            <h1
+            {/* <h1
                 style={{
                     fontWeight: 300,
                     fontSize: "14px",
                     color: "#eeeeee",
                     marginBottom: '20px'
                 }}
-            >Loading</h1>
+            >Loading</h1> */}
             <SpinnerCircularFixed 
                 color="#eeeeee"
                 secondaryColor="#999999"

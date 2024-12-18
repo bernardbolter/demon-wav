@@ -34,12 +34,13 @@
     width: 98%;
     height: calc(100vh - 160px);
     margin: 50px 1% 0;
-    overflow: hidden;
+    overflow: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
 
     @media screen and (min-width: $tablet) {
         flex-direction: row;
+        overflow: hidden;
     }
 }
 
@@ -100,7 +101,14 @@
     @media screen and (min-width: $tablet) {
         width: 50%;
         margin-top: 0;
+        overflow: scroll;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;
     }
+}
+
+.about-wav-product-container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 .about-wav-product {

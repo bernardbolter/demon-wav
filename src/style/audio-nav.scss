@@ -1,7 +1,7 @@
 .audio-nav-container {
     display: flex;
     position: fixed;
-    z-index: 800;
+    z-index: 2500;
     width: calc(100% - 20px);
     bottom: 0;
     margin: 10px;
@@ -47,7 +47,7 @@
     transform-origin: center;
     margin-top: -10px;
     left: 0;
-    filter: blur(1px);
+    // filter: blur(1px);
 
     svg {
         fill: $light-text;
@@ -57,12 +57,13 @@
 .audio-nav-svg-container {
     display: flex;
     margin: 10px 0;
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     transform-origin: center center;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    opacity: .6;
 }
 
 .audio-nav-svg {

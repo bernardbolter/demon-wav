@@ -25,7 +25,13 @@ const AboutTrack = () => {
                         <p key={artist} className="about-track-text-artist">{artist}</p>
                     ))}
                 </div>
-                <div className="about-track-image-container">
+                <div 
+                    className="about-track-image-container"
+                    style={{
+                        width: size.width < 769 ? size.width * .98 : size.width * .49,
+                        height: size.width < 769 ? size.width * .98 : size.width * .49
+                    }}    
+                >
                     <Image
                         src={`/images/${demon.tracksData[demon.currentTrackIndex].slug}/${demon.tracksData[demon.currentTrackIndex].slug}_cover.jpg`}
                         alt={`cover image for the track by ${demon.tracksData[demon.currentTrackIndex].slug}`}

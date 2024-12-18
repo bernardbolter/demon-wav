@@ -6,24 +6,39 @@
 
 .home-logo-container {
     position: fixed;
-    z-index: 800;
+    z-index: 3500;
     top: 10px;
     width: 218px;
     height: 16px;
     left: 50%;
     cursor: pointer;
-    transform: scale(1) translateX(-50%);
-    transition: transform .2s ease-in-out;
+    // transform: scale(1) translateX(-50%);
+    transition: transform 1s ease-in-out;
     transform-origin: center center;
 
-    &:hover {
-        transform: scale(1.05) translateX(-50%);
-        transition: transform .2s ease-in-out;
-    }
+    // &:hover {
+    //     transform: scale(1.05) translateX(-50%) translateY(0);
+    //     transition: transform .2s ease-in-out;
+    // }
 
     svg {
         fill: $light-text;
     }
+}
+
+.grey-background {
+    width: 100%;
+    height: 100vh;
+    background: $background;
+    transition: opacity 1s ease-in-out;
+    position: fixed;
+    z-index: 3000;
+}
+
+.home-logo-center {
+    // transform: scale(1.05) translateX(-50%) translateY(-47%);
+    transition: top 1s ease-in-out;
+    // transform: scale(1.05) translateX(-50%) translateY(-50%);
 }
 
 .home-playlist-container {

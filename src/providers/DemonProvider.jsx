@@ -26,6 +26,9 @@ const DemonProvider = ({ children }) => {
         restartTrack: false,
         backgroundOffestX: 0,
         backgroundOffestY: 0,
+        logoClicked: false,
+        greyFaded: false,
+        startAudio: false
    })
 
    return (

@@ -37,21 +37,39 @@ const Home = () => {
 
   return (
       <section className="home-container">
-        {/* {!demon.assetsLoaded && <Loading text="loading demon WAV" />} */}
+        {!demon.assetsLoaded && <Loading text="loading demon WAV" />}
         {demon.tracksData.length !==0 && (
           <>
                 <div 
                   className="home-logo-container"
+                  style={{
+                    transform: `translateY(${demon.logoClicked ? 0 : (size.height / 2 ) - 10}px) translateX(-50%)`
+                  }}
                   onClick={() => {
-                    if (demon.page === 'about') {
-                      setDemon(state => ({ ...state, page: 'home' }))
+                    if (!demon.logoClicked) {
+                      setDemon(state => ({ ...state, logoClicked: true, startAudio: true }))
+                      setTimeout(() => {
+                        setDemon(state => ({ ...state, greyFaded: true }))
+                      }, 1000)
                     } else {
-                      setDemon(state => ({ ...state, page: 'about' }))
+                      if (demon.page === 'about') {
+                        setDemon(state => ({ ...state, page: 'home' }))
+                      } else {
+                        setDemon(state => ({ ...state, page: 'about' }))
+                      }
                     }
                   }}
                 >
                   <Logo />
                 </div>
+                {!demon.greyFaded && (
+                  <div 
+                    className="grey-background"
+                    style={{
+                      opacity: !demon.logoClicked ? 1 : 0
+                    }}
+                  />
+                )}
                   <div 
                     className="loading-image-container"
                     style={{

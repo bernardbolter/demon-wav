@@ -45,6 +45,16 @@ const AudioNav = ({ audioElmRef }) => {
         }))
     }
 
+    useEffect(() => {
+        if (demon.startAudio) {
+            audioElmRef.current.play()
+            setDemon(state => ({ 
+                ...state, 
+                trackPlaying: true
+            }))
+        }
+    }, [demon.startAudio])
+
     return (
         <section className="audio-nav-container">
             <p 
