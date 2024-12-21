@@ -55,7 +55,7 @@ const AboutWAV = () => {
                         </div>
                         <div className="about-wav-product_text_block">
                             <p>MORE COMING SOON</p>
-                            <p>NOVEMBER 2024</p>
+                            {/* <p>NOVEMBER 2024</p> */}
                         </div>
                     </div>
                     <div className="about-wav-product greyed-out">
@@ -64,7 +64,7 @@ const AboutWAV = () => {
                         </div>
                         <div className="about-wav-product_text_block">
                             <p>MORE COMING SOON</p>
-                            <p>NOVEMBER 2024</p>
+                            {/* <p>NOVEMBER 2024</p> */}
                         </div>
                     </div>
                     <div className="about-wav-product greyed-out">
@@ -73,7 +73,7 @@ const AboutWAV = () => {
                         </div>
                         <div className="about-wav-product_text_block">
                             <p>MORE COMING SOON</p>
-                            <p>NOVEMBER 2024</p>
+                            {/* <p>NOVEMBER 2024</p> */}
                         </div>
                     </div>
                 </div>

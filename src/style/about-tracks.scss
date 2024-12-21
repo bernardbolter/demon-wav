@@ -12,7 +12,7 @@
 
 .about-track-close-container {
     position: fixed;
-    top: 20px;
+    top: 10px;
     right: 20px;
     cursor: pointer;
     height: 16px;
@@ -34,7 +34,8 @@
     width: 98%;
     height: calc(100vh - 160px);
     margin: 35px 1% 0;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
 
@@ -60,21 +61,21 @@
 
 .about-track-image-container {
     width: 98%;
-    margin: 10px 1%;
+    margin: 10px auto;
     position: relative;
     flex-basis: auto;
 
     @media screen and (min-width: $tablet) {
-        max-width: 440px;
-        max-height: 440px;
+        // max-width: 440px;
+        // max-height: 440px;
         flex-basis: -moz-available;
         position: relative;
     }
 
     img {
         width: 100%;
-        max-width: 440px;
-        max-height: 440px;
+        // max-width: 440px;
+        // max-height: 440px;
     }
 }
 
@@ -83,7 +84,7 @@
     font-size: 15px;
     line-height: 17px;
     font-weight: 400;
-    padding: 0 0 5px 0;
+    padding: 0 0 14px 0;
 
     // @media screen and (min-width: $mobile) {
     //     font-size: 12px;
@@ -101,17 +102,17 @@
 
 .about-track-text-artist {
     color: $background;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 15px;
+    line-height: 19px;
     font-weight: 400;
 
-    @media screen and (min-width: $mobile) {
-        font-size: 11.5px;
-        line-height: 24px;
-    }
+    // @media screen and (min-width: $mobile) {
+    //     font-size: 11.5px;
+    //     line-height: 24px;
+    // }
 
-    @media screen and (min-width: $tablet) {
-        font-size: 11.5px;
-        line-height: 24px;
-    }
+    // @media screen and (min-width: $tablet) {
+    //     font-size: 11.5px;
+    //     line-height: 24px;
+    // }
 }

@@ -28,8 +28,8 @@ const AboutTrack = () => {
                 <div 
                     className="about-track-image-container"
                     style={{
-                        width: size.width < 769 ? size.width * .98 : size.width * .49,
-                        height: size.width < 769 ? size.width * .98 : size.width * .49
+                        width: size.width < 769 ? size.width * .95 : size.width * .49,
+                        height: size.width < 769 ? size.width * .95 : size.width * .49
                     }}    
                 >
                     <Image
