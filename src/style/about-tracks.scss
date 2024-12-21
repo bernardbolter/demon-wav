@@ -80,23 +80,23 @@
 
 .about-track-text {
     color: $background;
-    font-size: 11px;
-    line-height: 16px;
+    font-size: 15px;
+    line-height: 17px;
     font-weight: 400;
     padding: 0 0 5px 0;
 
-    @media screen and (min-width: $mobile) {
-        font-size: 12px;
-        line-height: 16.5px;
-    }
+    // @media screen and (min-width: $mobile) {
+    //     font-size: 12px;
+    //     line-height: 16.5px;
+    // }
 
-    @media screen and (min-width: $tablet) {
-        color: $background;
-        font-size: 15.5px;
-        line-height: 16px;
-        font-weight: 400;
-        padding: 0 5px 40px 0;
-    }
+    // @media screen and (min-width: $tablet) {
+    //     color: $background;
+    //     font-size: 15.5px;
+    //     line-height: 16px;
+    //     font-weight: 400;
+    //     padding: 0 5px 40px 0;
+    // }
 }
 
 .about-track-text-artist {
