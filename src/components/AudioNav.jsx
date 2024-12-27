@@ -35,7 +35,9 @@ const AudioNav = ({ audioElmRef }) => {
     
     const clickedProgressBar = e => {
         console.log('clicked bar: ', e.clientX, e)
-        console.log(lineRef.current, size.width)
+        console.log(lineRef.current.offsetWidth)
+        console.log(size.width)
+        console.log(demon.currentTrackLength)
         const newTime = (e.clientX * demon.currentTrackLength / lineRef.current.offsetWidth) - 3
         console.log(newTime)
         audioElmRef.current.currentTime = newTime

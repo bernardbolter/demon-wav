@@ -20,6 +20,7 @@ import AudioNav from "./AudioNav"
 
 
 const TheVis = ({ analyzer }) => {
+    // console.log(analyzer)
     const [demon, setDemon] = useContext(DemonContext)
     const imageRef = useRef(null)
     const size = useWindowSize()
@@ -38,23 +39,33 @@ const TheVis = ({ analyzer }) => {
     }
 
     useFrame(() => {
-        if (analyzer) {
-            // console.log(analyzer)
-
-            if (analyzer.sourceNode.mediaElement.currentTime !== 0) {
-                setDemon(state => ({ 
-                    ...state, 
-                    currentTrackTime: analyzer.sourceNode.mediaElement.currentTime,
-                    currentTrackLength: analyzer.sourceNode.mediaElement.duration
+        if (analyzer.current) {
+            const songData = new Uint8Array(140);
+            analyzer.current.getByteFrequencyData(songData);
+            // console.log(songData)
+            // console.log(analyzer.current)
+            // console.log(audioElmRef.current.currentTime)
+            // if (analyzer.sourceNode.mediaElement.currentTime !== 0) {
+            //     setDemon(state => ({ 
+            //         ...state, 
+            //         currentTrackTime: analyzer.sourceNode.mediaElement.currentTime,
+            //         currentTrackLength: analyzer.sourceNode.mediaElement.duration
                 
-                }))
-            }
+            //     }))
+            // }
+            // const byte = analyzer.getByteFrequencyData()
+            // console.log(byte)
+            // analyzer.current?.fftSize = 256;
+            // const bufferLength = analyzer.current?.frequencyBinCount;
+            // console.log(bufferLength);
+            // const dataArray = new Uint8Array(bufferLength);
+            // console.log(dataArray);
             
-            const fft = analyzer.getFFT();
+            // const fft = analyzer.getFFT();
             // console.log(fft)
-            var theAverage = getAverage(fft)
+            var theAverage = getAverage(songData)
             // console.log(theAverage)
-            imageRef.current.material.displacementScale = -theAverage / 2
+            imageRef.current.material.displacementScale = -theAverage / 20
             // const floatData = analyzer.analyzerNode.getFloatFrequencyData()
             // console.log(floatData)
         }
@@ -90,19 +101,57 @@ const NewVis = () => {
     const [audioURL, setAudioURL] = useState('/audio/uno_alesia.mp3')
     const progress = useProgress()
     const [analyzer, setAnalyzer] = useState(null)
-    const [source, setSource] = useState(null)
+    // const [source, setSource] = useState(null)
     // const [ctx, setCtx] = useState(new AudioContext())
 
-    const imageRef = useRef(null)
-    const analyzerRef = useRef(null)
-    const audioRef = useRef(null)
+    // const imageRef = useRef(null)
+    // const analyzerRef = useRef(null)
+    // const audioRef = useRef(null)
     const audioElmRef = useRef(null)
 
-    let audioContext
+    // let audioContext = null
+    // let analyser
+    // let audioSrc
 
-    useEffect(() => {
-        setAnalyzer(new AudioAnalyzer(audioElmRef.current))
-    }, [])
+    const audioRef = useRef()
+    const sourceRef = useRef()
+    const analyzerRef = useRef()
+
+    const handleOnPlay = () => {
+        let audioContext = new AudioContext()
+        if (!sourceRef.current) {
+            sourceRef.current = audioContext.createMediaElementSource(audioElmRef.current)
+            analyzerRef.current = audioContext.createAnalyser()
+            sourceRef.current.connect(analyzerRef.current)
+            analyzerRef.current.connect(audioContext.destination)
+        }
+        // visualizeData()
+    }
+
+
+    // useEffect(() => {
+    //     // setAnalyzer(new AudioAnalyzer(audioElmRef.current))
+    //     audioContext = new AudioContext()
+    //     // analyser = audioContext.createAnalyser()
+    //     // audioSrc = audioContext.createMediaElementSource(audioElmRef.current)
+    // }, [])
+
+    // useEffect(() => {
+    //     // if (!audioContext === null) {
+    //     //     console.log('no context')
+    //     //     audioContext = new AudioContext()
+    //     // }
+    //     if (!audioContext) {
+    //         console.log('got context')
+    //         console.log(audioContext)
+    //         audioContext = new AudioContext()
+    //         analyser = audioContext.createAnalyser()
+    //         audioSrc = audioContext.createMediaElementSource(audioElmRef.current)
+    //         audioSrc.connect(analyser)
+    //         audioSrc.connect(audioContext.destination)
+    //         setAnalyzer(analyser)
+    //     }
+    // }, [])
 
     // useEffect(() => {
     //     console.log(audioElmRef)
@@ -157,6 +206,19 @@ const NewVis = () => {
         }
     }, [progress])
 
+    useEffect(() => {
+        if (audioElmRef.current) {
+            console.log(audioElmRef.current)
+            console.log(demon.currentTrackTime)
+            console.log(audioElmRef.current.currentTime)
+        }
+    }, [demon.currentTrackTime])
+
+    useEffect(() => {
+        console.log("aer: ", audioElmRef)
+        setDemon(state  => ({ ...state, currentTrackLength: audioElmRef.current.duration  }))
+    }, [])
+
     const onMouseMove = e => {
         const { clientX, clientY, currentTarget } = e;
 
@@ -201,7 +263,7 @@ const NewVis = () => {
                     />
                 </mesh> */}
                 <OrbitControls />
-                <TheVis analyzer={analyzer} />
+                <TheVis analyzer={analyzerRef} />
             </Canvas>
             
         </div>
@@ -216,6 +278,7 @@ const NewVis = () => {
                 top: 0,
                 zIndex: 4000
             }}
+            onPlay={handleOnPlay}
         />
         </>
     )
