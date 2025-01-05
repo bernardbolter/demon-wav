@@ -7,13 +7,14 @@
 .home-logo-container {
     position: fixed;
     z-index: 3500;
-    top: 10px;
+    top: 50%;
     width: 218px;
     height: 16px;
     left: 50%;
     cursor: pointer;
-    // transform: scale(1) translateX(-50%);
-    transition: transform 1s ease-in-out;
+    transform: scale(1) translateX(-50%);
+    // transition: transform 1s ease-in-out;
+    transition: top 1s ease 0s;
     transform-origin: center center;
 
     // &:hover {
@@ -21,8 +22,19 @@
     //     transition: transform .2s ease-in-out;
     // }
 
+
     svg {
         fill: $light-text;
+    }
+}
+
+.home-logo-container-clicked {
+    top: 10px;
+    transition: all .5s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05) translateX(-50%) translateY(0);
+        transition: all .5s ease-in-out;
     }
 }
 
