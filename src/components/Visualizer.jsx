@@ -1,6 +1,6 @@
 "use client"
 
-import { useContext, Suspense, useRef, useState, useEffect } from "react"
+import { useContext, useRef, useState, useEffect } from "react"
 import { DemonContext } from "@/providers/DemonProvider"
 import { useWindowSize } from "@/hooks/useWindowSize"
 
@@ -8,24 +8,23 @@ import Loading from "./Loading"
 import AudioNav from "./AudioNav"
 
 import * as THREE from 'three'
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useControls } from "leva"
-import { TextureLoader } from "three"
-import { OrbitControls, useProgress } from "@react-three/drei"
+import { OrbitControls, useProgress, useTexture } from "@react-three/drei"
 
 const Analyzer = ({ 
     track,
-    analyzer,
-    desktopImage,
-    desktopDis,
-    mobileImage,
-    mobileDis
+    analyzer
 }) => {
     const [demon, setDemon] = useContext(DemonContext)
     const size = useWindowSize()
     const imageRef = useRef()
     const viewport = useThree(state => state.viewport)
     const { gl } = useThree()
+    const desktopImage = useTexture('/images/uno_alesia/uno_alesia_desktop.jpg')
+    const desktopDis = useTexture('/images/uno_alesia/uno_alesia_dis_desktop.jpg')
+    const mobileImage = useTexture('/images/uno_alesia/uno_alesia_mobile.jpg')
+    const mobileDis = useTexture('/images/uno_alesia/uno_alesia_dis_mobile.jpg')
 
     // calulation to get the average from analyzer array
     var getAverage = function(dataArray) {
@@ -85,30 +84,11 @@ const Analyzer = ({
 
 const Visualizer = () => {
     const [demon, setDemon] = useContext(DemonContext)
-    const [desktopImage, setDesktopImage] = useState()
-    const [desktopDis, setDesktopDis] = useState()
-    const [mobileImage, setMobileImage] = useState()
-    const [mobileDis, setMobileDis] = useState()
-    const [audioURL, setAudioURL] = useState()
+    const [audioURL, setAudioURL] = useState('/audio/uno_alesia.mp3')
     const progress = useProgress()
     const audioRef = useRef(null)
     const sourceRef = useRef(null)
     const analyzerRef = useRef(null)
-
-    const desktopImageLoader = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg')
-    const desktopDisLoader = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg')
-    const mobileImageLoader = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg')
-    const mobileImageDis = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg')
-
-
-    useEffect(() => {
-        setDesktopImage(desktopImageLoader)
-        setDesktopDis(desktopDisLoader)
-        setMobileImage(mobileImageLoader)
-        setMobileDis(mobileImageDis)
-        setAudioURL('/audio/uno_alesia.mp3')
-        // setDemon(state => ({ ...state, assetsLoaded: true }))
-    }, [])
 
     const handleOnPlay = () => {
         let audioContext = new AudioContext()
@@ -160,10 +140,6 @@ const Visualizer = () => {
                     <Analyzer
                         track={audioRef.current}
                         analyzer={analyzerRef}
-                        desktopImage={desktopImage}
-                        desktopDis={desktopDis}
-                        mobileImage={mobileImage}
-                        mobileDis={mobileDis}
                     />
                 </Canvas>
             </div>

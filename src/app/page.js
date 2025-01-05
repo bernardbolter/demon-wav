@@ -1,6 +1,6 @@
 "use client"
 
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { DemonContext } from "@/providers/DemonProvider"
 import { useWindowSize } from "@/hooks/useWindowSize"
 
@@ -14,10 +14,22 @@ import Logo from "@/svg/Logo"
 import PlaylistIcon from "@/svg/PlaylistIcon"
 import Play from "@/svg/Play"
 
+import dd from '../../public/demonData.json'
+
 const Home = () => {
   const [demon, setDemon] = useContext(DemonContext)
   const size = useWindowSize()
   // console.log(demon)
+
+  useEffect(() => {
+    // console.log("dd: ", dd)
+    setDemon(state => ({ 
+      ...state,
+      aboutData: dd.about,
+      tracksData: dd.tracks,
+      productsData: dd.products 
+    }))
+  }, [dd])
 
   return (
       <section className="home-container">
