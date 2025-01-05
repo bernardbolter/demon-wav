@@ -1,6 +1,6 @@
 "use client"
 
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { DemonContext } from "@/providers/DemonProvider"
 import { useWindowSize } from "@/hooks/useWindowSize"
 
@@ -9,12 +9,10 @@ import AboutWAV from '@/components/AboutWAV'
 import Playlist from '@/components/Playlist'
 import AboutTrack from "@/components/AboutTrack"
 import Visualizer from "@/components/Visualizer"
-import NewVis from "@/components/NewVis"
 
 import Logo from "@/svg/Logo"
 import PlaylistIcon from "@/svg/PlaylistIcon"
 import Play from "@/svg/Play"
-// import Tilt from 'react-parallax-ti
 
 const Home = () => {
   const [demon, setDemon] = useContext(DemonContext)
@@ -26,9 +24,7 @@ const Home = () => {
         {!demon.assetsLoaded && <Loading text="loading demon WAV" />}
                 <div 
                   className={demon.logoClicked ? "home-logo-container home-logo-container-clicked" : "home-logo-container"}
-                  // style={{
-                  //   transform: `translateY(${!demon.logoClicked ? 0 : (size.height / 2 ) - 10}px) translateX(-50%)`
-                  // }}
+
                   onClick={() => {
                     if (!demon.logoClicked) {
                       setDemon(state => ({ ...state, logoClicked: true, startAudio: true }))
@@ -68,8 +64,6 @@ const Home = () => {
                     )}
                   </div>
                 <Visualizer/>
-                {/* <NewVis /> */}
-                {/* <AudioNav /> */}
                 {/* <div 
                   className="home-playlist-container"
                   onClick={() => {

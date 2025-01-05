@@ -1,3 +1,4 @@
+"use client"
 
 import { useContext, useMemo, useRef, useEffect } from 'react'
 import { DemonContext } from '@/providers/DemonProvider'

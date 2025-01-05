@@ -13,7 +13,6 @@ import { useControls } from "leva"
 import { TextureLoader } from "three"
 import { OrbitControls, useProgress } from "@react-three/drei"
 
-
 const Analyzer = ({ 
     track,
     analyzer,
@@ -86,15 +85,30 @@ const Analyzer = ({
 
 const Visualizer = () => {
     const [demon, setDemon] = useContext(DemonContext)
-    const [desktopImage, setDesktopImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg'))
-    const [desktopDis, setDesktopDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg'))
-    const [mobileImage, setMobileImage] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg'))
-    const [mobileDis, setMobileDis] = useState(useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
-    const [audioURL, setAudioURL] = useState('/audio/uno_alesia.mp3')
+    const [desktopImage, setDesktopImage] = useState()
+    const [desktopDis, setDesktopDis] = useState()
+    const [mobileImage, setMobileImage] = useState()
+    const [mobileDis, setMobileDis] = useState()
+    const [audioURL, setAudioURL] = useState()
     const progress = useProgress()
     const audioRef = useRef(null)
     const sourceRef = useRef(null)
     const analyzerRef = useRef(null)
+
+    const desktopImageLoader = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_desktop.jpg')
+    const desktopDisLoader = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg')
+    const mobileImageLoader = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_mobile.jpg')
+    const mobileImageDis = useLoader(TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg')
+
+
+    useEffect(() => {
+        setDesktopImage(desktopImageLoader)
+        setDesktopDis(desktopDisLoader)
+        setMobileImage(mobileImageLoader)
+        setMobileDis(mobileImageDis)
+        setAudioURL('/audio/uno_alesia.mp3')
+        // setDemon(state => ({ ...state, assetsLoaded: true }))
+    }, [])
 
     const handleOnPlay = () => {
         let audioContext = new AudioContext()
@@ -105,26 +119,23 @@ const Visualizer = () => {
             analyzerRef.current.connect(audioContext.destination)
             setDemon(state => ({ ...state, currentTrackLength: audioRef.current.duration }))
         }
-        // console.log(audioRef.current.duration)
-        // var duration = audioRef.current.duration
-        // console.log("duration: ", duration)
-        // setDemon(state => ({ ...state, currentTracklength: duration }))
     }
 
     // determine when the 4 images are loaded and then remove loading state
     useEffect(() => {
+        console.log(progress)
         if (progress.loaded === 4 && progress.total === 4) {
             setDemon(state => ({ ...state, assetsLoaded: true }))
         }
     }, [progress])
 
-    // set the current track length fro audio Ref
-    // useEffect(() => {
-    //     // if (audioRef.current?.duration) {
-    //         console.log(audioRef.current.duration)
-    //         setDemon(state => ({ ...state, currentTrackLength: audioRef.current.duration }))
-    //     // }
-    // }, [audioURL])
+    // set the current track length from audio Ref
+    useEffect(() => {
+        // if (audioRef.current?.duration) {
+            console.log(audioRef.current.duration)
+            setDemon(state => ({ ...state, currentTrackLength: audioRef.current.duration }))
+        // }
+    }, [audioURL])
 
     // create parralax from the mouse movement over the background image
     const onMouseMove = e => {
@@ -144,18 +155,16 @@ const Visualizer = () => {
                 onMouseMove={onMouseMove}
             >
                 <Canvas>
-                    {/* <Suspense fallback={<Loading text="loading Visualizer" />}> */}
-                        <ambientLight intensity={2} />
-                        <OrbitControls />
-                        <Analyzer
-                            track={audioRef.current}
-                            analyzer={analyzerRef}
-                            desktopImage={desktopImage}
-                            desktopDis={desktopDis}
-                            mobileImage={mobileImage}
-                            mobileDis={mobileDis}
-                        />
-                    {/* </Suspense> */}
+                    <ambientLight intensity={2} />
+                    <OrbitControls />
+                    <Analyzer
+                        track={audioRef.current}
+                        analyzer={analyzerRef}
+                        desktopImage={desktopImage}
+                        desktopDis={desktopDis}
+                        mobileImage={mobileImage}
+                        mobileDis={mobileDis}
+                    />
                 </Canvas>
             </div>
             <AudioNav audioRef={audioRef} />
