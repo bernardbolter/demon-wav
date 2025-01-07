@@ -7,6 +7,7 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 
 import Play from '@/svg/Play'
 import Stop from '@/svg/Stop'
+import Pause from '@/svg/Pause'
 import PlayHead from '@/svg/PlayHead'
 
 const AudioNav = ({ audioRef }) => {
@@ -86,13 +87,13 @@ const AudioNav = ({ audioRef }) => {
                     <>
                         {demon.trackPlaying ? (
                             <div
-                                className="audio-nav-svg"
+                                className="audio-nav-svg audio-svg-pause"
                                 onClick={() => {
                                     audioRef.current.pause()
                                     setDemon(state => ({ ...state, trackPlaying: false}))
                                 }}
                             >
-                                <Stop />
+                                <Pause />
                             </div>
                         ) : (
                             <div
