@@ -21,9 +21,10 @@ const Analyzer = ({
     const imageRef = useRef()
     const viewport = useThree(state => state.viewport)
     const { gl } = useThree()
-    const desktopImage = useTexture('/images/uno_alesia/uno_alesia_desktop.jpg')
+    // const desktopImage = useTexture('/images/uno_alesia/audio_one_desktop.jpg')
+    const desktopImage = useTexture('/images/uno_alesia/uno_alesia_desktop_new.png')
     const desktopDis = useTexture('/images/uno_alesia/uno_alesia_dis_desktop.jpg')
-    const mobileImage = useTexture('/images/uno_alesia/uno_alesia_mobile.jpg')
+    const mobileImage = useTexture('/images/uno_alesia/uno_alesia_mobile_new.png')
     const mobileDis = useTexture('/images/uno_alesia/uno_alesia_dis_mobile.jpg')
 
     // calulation to get the average from analyzer array
@@ -34,7 +35,7 @@ const Analyzer = ({
     }
 
     useEffect(() => {
-        if (size > 850) {
+        if (size > 768) {
             desktopImage.anisotropy = gl.capabilities.getMaxAnisotropy()  
         } else {
             mobileImage.anisotropy = gl.capabilities.getMaxAnisotropy()
@@ -66,6 +67,7 @@ const Analyzer = ({
     return (
         <mesh
             ref={imageRef}
+            // scale={[1, 1, 1]}
             scale={size.width > 768 ? [viewport.height * 1.78, viewport.height, 1] : [viewport.height * .6, viewport.height, 1.78]}
             castShadow={true}
             receiveShadow={true}
@@ -84,6 +86,7 @@ const Analyzer = ({
 
 const Visualizer = () => {
     const [demon, setDemon] = useContext(DemonContext)
+    const size = useWindowSize()
     const [audioURL, setAudioURL] = useState('/audio/uno_alesia.mp3')
     const progress = useProgress()
     const audioRef = useRef(null)
@@ -135,7 +138,7 @@ const Visualizer = () => {
                 onMouseMove={onMouseMove}
             >
                 <Canvas>
-                    <ambientLight intensity={2} />
+                    <ambientLight intensity={size.width > 768 ? 2 : 2} />
                     <OrbitControls />
                     <Analyzer
                         track={audioRef.current}
