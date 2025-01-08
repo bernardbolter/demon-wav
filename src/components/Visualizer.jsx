@@ -56,9 +56,9 @@ const Analyzer = ({
             const songData = new Uint8Array(140)
             analyzer.current.getByteFrequencyData(songData)
             var theAverage = getAverage(songData)
-            // console.log(theAverage)
+            console.log(theAverage)
             // imageRef.current.material.discplacementScale = -theAverage
-            imageRef.current.material.displacementScale = -theAverage / 20
+            imageRef.current.material.displacementScale = -theAverage / 40
             setDemon(state => ({ ...state, currentTrackTime: track.currentTime }))
         }
     })
