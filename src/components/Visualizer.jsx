@@ -8,7 +8,7 @@ import Loading from "./Loading"
 import AudioNav from "./AudioNav"
 
 import * as THREE from 'three'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
 import { useControls } from "leva"
 import { OrbitControls, useProgress, useTexture } from "@react-three/drei"
 
@@ -21,11 +21,10 @@ const Analyzer = ({
     const imageRef = useRef()
     const viewport = useThree(state => state.viewport)
     const { gl } = useThree()
-    const thatI = useTexture('/images/uno_alesia/monbile-image.jpg')
-    // const desktopImage = useTexture('/images/uno_alesia/uno_alesia_desktop_new.png')
-    const desktopDis = useTexture('/images/uno_alesia/uno_alesia_dis_desktop.jpg')
-    const mobileImage = useTexture('/images/uno_alesia/uno_alesia_mobile_new.png')
-    const mobileDis = useTexture('/images/uno_alesia/uno_alesia_dis_mobile.jpg')
+    const [desktopImage, setDektopImage] = useState(useLoader(THREE.TextureLoader, '/images/uno_alesia/uno_alesia_desktop_new.png'))
+    const [mobileImage, setMobileImage] = useState(useLoader(THREE.TextureLoader, '/images/uno_alesia/uno_alesia_mobile_new.png'))
+    const [desktopDis, setDektopDis] = useState(useLoader(THREE.TextureLoader, '/images/uno_alesia/uno_alesia_dis_desktop.jpg'))
+    const [mobileDis, setMobileDis] = useState(useLoader(THREE.TextureLoader, '/images/uno_alesia/uno_alesia_dis_mobile.jpg'))
 
     // calulation to get the average from analyzer array
     var getAverage = function(dataArray) {
@@ -34,13 +33,13 @@ const Analyzer = ({
         return length ? total / length : 0
     }
 
-    // useEffect(() => {
-    //     if (size > 768) {
-    //         desktopImage.anisotropy = gl.capabilities.getMaxAnisotropy()  
-    //     } else {
-    //         mobileImage.anisotropy = gl.capabilities.getMaxAnisotropy()
-    //     }
-    // }, [gl, desktopImage, mobileImage, size])
+    useEffect(() => {
+        if (size > 768) {
+            desktopImage.anisotropy = gl.capabilities.getMaxAnisotropy()  
+        } else {
+            mobileImage.anisotropy = gl.capabilities.getMaxAnisotropy()
+        }
+    }, [gl, desktopImage, mobileImage, size])
 
     // for testing in leva
     // const material = useControls({
@@ -75,7 +74,7 @@ const Analyzer = ({
             <planeGeometry args={[1, 1, 180, 180]} />
             <meshStandardMaterial
                 // wireframe={material.wireframe}
-                map={size.width > 768 ? thatI : mobileImage}
+                map={size.width > 768 ? desktopImage : mobileImage}
                 displacementMap={size.width > 768 ? desktopDis : mobileDis}
                 // displacementScale={material.displacementScale}
                 side={THREE.DoubleSide}
@@ -138,7 +137,7 @@ const Visualizer = () => {
                 onMouseMove={onMouseMove}
             >
                 <Canvas>
-                    <ambientLight intensity={size.width > 768 ? 0.6 : 1.5} />
+                    <ambientLight intensity={1} />
                     {/* <directionalLight position={[5, 5, 5]} intensity={size.width > 768 ? 2 : 3} /> */}
                     <OrbitControls />
                     <Analyzer
