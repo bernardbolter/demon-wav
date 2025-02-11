@@ -64,6 +64,15 @@
         width: 50%;
         margin-top: 3px;
         padding-right: 6px;
+        overflow: scroll;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;
+    }
+}
+
+.about-wav-demon-container::-webkit-scrollbar {
+    @media screen and (min-width: $tablet) {
+        display: none;
     }
 }
 
@@ -84,7 +93,8 @@
     width: 100%;
 
     p {
-        text-transform: uppercase;
+        // text-transform: uppercase;
+        color: $background;
         font-size: 15px;
         line-height: 17px;
         padding: 3px 0;

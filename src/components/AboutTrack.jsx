@@ -20,7 +20,7 @@ const AboutTrack = () => {
             </div>
             <div className="about-track-info-container">
                 <div className="about-track-text-container">
-                    <p className="about-track-text">ONE is the first track of the project. The idea behind the track is about the specular nature of the self. The intertwining of expectations and projections that lead the individual to a wild self-deterministic race. The song explores the eternal dance between ego and ambition and the pressure that comes from it, in a continuous becoming, at times salvific, at times damned.</p>
+                    <p className="about-track-text">UNO is the first track of the project. The track speculates on the nature of the self. The intertwining of expectations and projections that lead the individual to a turmoiled self-deterministic race. The song explores the eternal dance between ego and ambition and the pressure that derives , in a continuous flux, at times salvific, at times detrimental.</p>
                     {demon.tracksData[demon.currentTrackIndex].artists.map(artist => (
                         <p key={artist} className="about-track-text-artist">{artist}</p>
                     ))}

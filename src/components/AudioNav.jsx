@@ -58,7 +58,7 @@ const AudioNav = ({ audioRef }) => {
             <p 
                 className="audio-nav-title"
                 onClick={() => setDemon(state => ({ ...state, page: 'track' }))}    
-            >UNO – DEMON WAV</p>
+            >UNO</p>
             <div 
                 className="audio-nav-progress"
                 onClick={e => clickedProgressBar(e)}    
