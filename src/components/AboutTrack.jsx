@@ -32,11 +32,19 @@ const AboutTrack = () => {
                         height: size.width < 769 ? size.width * .95 : size.width * .49
                     }}    
                 >
-                    <Image
+                    {/* <Image
                         src={`/images/${demon.tracksData[demon.currentTrackIndex].slug}/${demon.tracksData[demon.currentTrackIndex].slug}_cover.jpg`}
                         alt={`cover image for the track by ${demon.tracksData[demon.currentTrackIndex].slug}`}
                         width={size.width < 769 ? size.width * .98 : size.width * .49}
                         height={size.width < 769 ? size.width * .98 : size.width * .49}
+                    /> */}
+                    <img
+                        src={`/images/${demon.tracksData[demon.currentTrackIndex].slug}/${demon.tracksData[demon.currentTrackIndex].slug}_cover.jpg`}
+                        alt={`cover image for the track by ${demon.tracksData[demon.currentTrackIndex].slug}`}
+                        style={{
+                            width: size.width < 769 ? size.width * .98 : size.width * .49,
+                            height: size.width < 769 ? size.width * .98 : size.width * .49
+                        }}
                     />
                 </div>
             </div>
